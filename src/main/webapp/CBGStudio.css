@@ -1,16 +1,47 @@
-body{
-    padding:0;
-    margin:0;
+body {
+	padding: 0;
+	margin: 0;
 }
 
-#menu{
-    width:100%;
-    height:50px;
-    float:left;
+#menu {
+	width: 100%;
+	height: 50px;
+	float: left;
 }
 
-#content{
-    height:100%;
-    width:100%;
-    float:left;
+#content {
+	height: 100%;
+	width: 100%;
+	float: left;
+}
+
+.width100 {
+	width: 100%;
+}
+
+.display-none {
+	visibility: hidden;
+	display: none;
+}
+
+.display-show {
+	visibility: visible;
+	display: block;
+}
+
+.styled-panel-body td{
+    font-size:14px;
+}
+
+.styled-panel-buttons {
+	float: right;
+}
+
+.gwt-DialogBox .styled-panel-buttons {
+	float: right;
+	position: relative;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+	padding: 0;
 }

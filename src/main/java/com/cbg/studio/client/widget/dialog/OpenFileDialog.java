@@ -7,6 +7,7 @@ import com.cbg.studio.client.data.CATModel;
 import com.cbg.studio.client.util.RPCUtil;
 import com.cbg.studio.client.widget.screen.util.UiAction;
 import com.cbg.studio.client.widget.screen.util.UiActionEvent;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
@@ -31,7 +32,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
      */
     public OpenFileDialog(String title, boolean autoHide, boolean modal) {
         super(autoHide, modal);
-        this.setTitle(title);
+        this.setHTML(title);
     }
 
     /*
@@ -44,7 +45,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
         this.body.setWidget(0, 0, new HTML("File:"));
 
         form = new FormPanel();
-        form.setAction("/openFile");
+        form.setAction(GWT.getModuleBaseURL()+"/openFile");
         form.setMethod(FormPanel.METHOD_POST);
         form.setEncoding(FormPanel.ENCODING_MULTIPART);
 
@@ -88,6 +89,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
                 setModel(result);
                 OpenFileDialog.this.uiHandler.onUiAction(new UiActionEvent(
                         OpenFileDialog.this, UiAction.LOAD));
+                OpenFileDialog.this.hide(true);
             }
 
         });

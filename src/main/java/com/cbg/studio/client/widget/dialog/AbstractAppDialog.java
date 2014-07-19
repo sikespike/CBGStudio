@@ -18,18 +18,21 @@ import com.google.gwt.user.client.ui.Widget;
 public abstract class AbstractAppDialog extends DialogBox implements ClickHandler{
     private int buttonCols = 0;
     
+    private FlexTable wrapper;
     protected FlexTable body;
     protected FlexTable buttons;
     
     protected Button okButton;
     protected Button cancelButton;
     
+    protected boolean autoHide = false;
+    
     protected UiCallbackHandler uiHandler;
     /**
      * 
      */
     public AbstractAppDialog() {
-        super(true,true);
+        super(false,true);
         init();
     }
 
@@ -38,6 +41,7 @@ public abstract class AbstractAppDialog extends DialogBox implements ClickHandle
      */
     public AbstractAppDialog(boolean autoHide) {
         super(autoHide);
+        this.autoHide = autoHide;
         init();
     }
 
@@ -55,6 +59,7 @@ public abstract class AbstractAppDialog extends DialogBox implements ClickHandle
      */
     public AbstractAppDialog(boolean autoHide, boolean modal) {
         super(autoHide, modal);
+        this.autoHide = autoHide;
         init();
     }
 
@@ -66,29 +71,37 @@ public abstract class AbstractAppDialog extends DialogBox implements ClickHandle
     public AbstractAppDialog(boolean autoHide, boolean modal,
             Caption captionWidget) {
         super(autoHide, modal, captionWidget);
+        this.autoHide = autoHide;
         init();
     }
 
     private void init() {
+        this.wrapper = new FlexTable();
         this.body = new FlexTable();
         this.addBody();
         
         this.buttons = new FlexTable();
 
-        super.add(this.body);
-        super.add(this.buttons);
+        wrapper.setWidget(0, 0, this.body);
+        wrapper.setWidget(1, 0, this.buttons);
+        
+        super.add(wrapper);
 
         this.buttons.getElement().addClassName("display-none");
         
         this.addStyles();
         
-        this.okButton = new Button("Ok", this);
+        this.okButton = new Button("OK", this);
+        this.cancelButton = new Button("Cancel",this);
+        
+        this.addButton(this.okButton);
+        this.addButton(this.cancelButton);
     }
     
     protected void addStyles(){
         this.addStyleName("styled-panel-wrapper");
         this.body.addStyleName("styled-panel-body width100");
-        this.buttons.addStyleName("styled-panel-buttons width100");
+        this.buttons.addStyleName("styled-panel-buttons");
     }
     
     @Override
@@ -115,7 +128,9 @@ public abstract class AbstractAppDialog extends DialogBox implements ClickHandle
     public void onClick(ClickEvent e){
         if(e.getSource() == okButton){
             onOk();
-            this.hide(true);
+            if(this.autoHide){
+                this.hide(true);
+            }
         } else if(e.getSource() == cancelButton){
             onCancel();
             this.hide(true);
