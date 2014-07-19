@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.cbg.studio.client.geometry;
+package com.cbg.studio.client.data.geometry;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,27 +48,6 @@ public class Motion implements Serializable{
         b.append("}");
 
         return b.toString();
-    }
-
-    @SuppressWarnings("all")
-    private void readObject(java.io.ObjectInputStream stream)
-            throws IOException, ClassNotFoundException {
-        this.bone = (Bone)stream.readObject();
-        this.targetBone = (Bone)stream.readObject();
-        this.links = stream.readInt();
-        this.iteration = stream.readInt();
-        this.maxAngle = stream.readFloat();
-        this.childBones = (List<Bone>)stream.readObject();
-    }
-
-    private void writeObject(java.io.ObjectOutputStream stream)
-            throws IOException {
-        stream.writeObject(this.bone);
-        stream.writeObject(this.targetBone);
-        stream.writeInt(this.links);
-        stream.writeInt(this.iteration);
-        stream.writeFloat(this.maxAngle);
-        stream.writeObject(this.childBones);
     }
     
     /**

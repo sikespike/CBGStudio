@@ -1,6 +1,5 @@
-package com.cbg.studio.client.geometry;
+package com.cbg.studio.client.data.geometry;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import com.cbg.studio.client.util.StringUtil;
@@ -55,43 +54,6 @@ public class RigidBody implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
-
-    private void readObject(java.io.ObjectInputStream stream)
-            throws IOException, ClassNotFoundException {
-        this.name = (String) stream.readObject();
-        this.bone = (Bone) stream.readObject();
-        this.collisionGroupId = stream.readInt();
-        this.collisionMaskId = stream.readInt();
-        this.shape = (String) stream.readObject();
-        this.size = (Vector) stream.readObject();
-        this.position = (Vector) stream.readObject();
-        this.rotation = (Vector) stream.readObject();
-        this.mass = stream.readFloat();
-        this.velocityAtt = stream.readFloat();
-        this.rotationAtt = stream.readFloat();
-        this.bounce = stream.readFloat();
-        this.friction = stream.readFloat();
-        this.mode = (String) stream.readObject();
-
-    }
-
-    private void writeObject(java.io.ObjectOutputStream stream)
-            throws IOException {
-        stream.writeObject(this.name);
-        stream.writeObject(this.bone);
-        stream.writeObject(this.collisionGroupId);
-        stream.writeObject(this.collisionMaskId);
-        stream.writeObject(this.shape);
-        stream.writeObject(this.size);
-        stream.writeObject(this.position);
-        stream.writeObject(this.rotation);
-        stream.writeObject(this.mass);
-        stream.writeObject(this.velocityAtt);
-        stream.writeObject(this.rotationAtt);
-        stream.writeObject(this.bounce);
-        stream.writeObject(this.friction);
-        stream.writeObject(this.mode);
     }
 
     /**

@@ -1,6 +1,5 @@
-package com.cbg.studio.client.geometry;
+package com.cbg.studio.client.data.geometry;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 
@@ -24,22 +23,6 @@ public class Material implements Serializable{
                 .append("\"" + texture + "\"").append("}");
 
         return b.toString();
-    }
-    
-    private void readObject(java.io.ObjectInputStream stream)
-            throws IOException, ClassNotFoundException {
-        this.color = (Vector)stream.readObject();
-        this.specLight = (Vector)stream.readObject();
-        this.ambientLight = (Vector)stream.readObject();
-        this.texture = (String)stream.readObject();
-    }
-
-    private void writeObject(java.io.ObjectOutputStream stream)
-            throws IOException {
-        stream.writeObject(this.color);
-        stream.writeObject(this.specLight);
-        stream.writeObject(this.ambientLight);
-        stream.writeObject(this.texture);
     }
     
     /**

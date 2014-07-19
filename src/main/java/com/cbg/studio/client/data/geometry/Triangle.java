@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cbg.studio.client.geometry;
+package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.cbg.studio.client.geometry;
+package com.cbg.studio.client.data.geometry;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import com.cbg.studio.client.util.StringUtil;
@@ -32,18 +31,6 @@ public class MorphData implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
-
-    private void readObject(java.io.ObjectInputStream stream)
-            throws IOException, ClassNotFoundException {
-        this.index = stream.readInt();
-        this.offset = (Vector)stream.readObject();
-    }
-
-    private void writeObject(java.io.ObjectOutputStream stream)
-            throws IOException {
-        stream.writeInt(this.index);
-        stream.writeObject(this.offset);
     }
     
     /**

@@ -3,7 +3,7 @@
  */
 package com.cbg.studio.client.widget.dialog;
 
-import com.cbg.studio.client.data.CATModel;
+import com.cbg.studio.client.data.CATModelDto;
 import com.cbg.studio.client.util.RPCUtil;
 import com.cbg.studio.client.widget.screen.util.UiAction;
 import com.cbg.studio.client.widget.screen.util.UiActionEvent;
@@ -24,7 +24,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
     private FormPanel form;
     private FileUpload fileUpload;
 
-    private CATModel model;
+    private CATModelDto model;
 
     /**
      * @param autoHide
@@ -45,7 +45,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
         this.body.setWidget(0, 0, new HTML("File:"));
 
         form = new FormPanel();
-        form.setAction(GWT.getModuleBaseURL()+"/openFile");
+        form.setAction(GWT.getModuleBaseURL()+"openFile");
         form.setMethod(FormPanel.METHOD_POST);
         form.setEncoding(FormPanel.ENCODING_MULTIPART);
 
@@ -65,7 +65,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
      * (com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent)
      */
     public void onSubmitComplete(SubmitCompleteEvent event) {
-        RPCUtil.getModelRpc().getModel(new AsyncCallback<CATModel>() {
+        RPCUtil.getModelRpc().getModel(new AsyncCallback<CATModelDto>() {
 
             /*
              * (non-Javadoc)
@@ -85,7 +85,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
              * com.google.gwt.user.client.rpc.AsyncCallback#onSuccess(java.lang
              * .Object)
              */
-            public void onSuccess(CATModel result) {
+            public void onSuccess(CATModelDto result) {
                 setModel(result);
                 OpenFileDialog.this.uiHandler.onUiAction(new UiActionEvent(
                         OpenFileDialog.this, UiAction.LOAD));
@@ -118,7 +118,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
     /**
      * @return the model
      */
-    public CATModel getModel() {
+    public CATModelDto getModel() {
         return model;
     }
 
@@ -126,7 +126,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
      * @param model
      *            the model to set
      */
-    public void setModel(CATModel model) {
+    public void setModel(CATModelDto model) {
         this.model = model;
     }
 }

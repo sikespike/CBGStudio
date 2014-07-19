@@ -6,20 +6,20 @@ package com.cbg.studio.client.data;
 import java.io.Serializable;
 import java.util.List;
 
-import com.cbg.studio.client.geometry.Bone;
-import com.cbg.studio.client.geometry.DisplayBoneGroupList;
-import com.cbg.studio.client.geometry.Joint;
-import com.cbg.studio.client.geometry.Material;
-import com.cbg.studio.client.geometry.Motion;
-import com.cbg.studio.client.geometry.RigidBody;
-import com.cbg.studio.client.geometry.Triangle;
-import com.cbg.studio.client.geometry.VertexMorph;
+import com.cbg.studio.client.data.geometry.Bone;
+import com.cbg.studio.client.data.geometry.DisplayBoneGroupList;
+import com.cbg.studio.client.data.geometry.Joint;
+import com.cbg.studio.client.data.geometry.Material;
+import com.cbg.studio.client.data.geometry.Motion;
+import com.cbg.studio.client.data.geometry.RigidBody;
+import com.cbg.studio.client.data.geometry.Triangle;
+import com.cbg.studio.client.data.geometry.VertexMorph;
 
 /**
  * @author Siebe
  *
  */
-public class CATModel implements Serializable{
+public class CATModelDto implements Serializable{
     private static final long serialVersionUID = 1L;
     
     private List<Material> materials;

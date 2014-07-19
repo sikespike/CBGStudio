@@ -1,21 +1,21 @@
 /**
  * 
  */
-package com.cbg.studio.client.data;
+package com.cbg.studio.server.domain;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
 
-import com.cbg.studio.client.geometry.Bone;
-import com.cbg.studio.client.geometry.DisplayBoneGroupList;
-import com.cbg.studio.client.geometry.Joint;
-import com.cbg.studio.client.geometry.Material;
-import com.cbg.studio.client.geometry.Motion;
-import com.cbg.studio.client.geometry.RigidBody;
-import com.cbg.studio.client.geometry.Triangle;
-import com.cbg.studio.client.geometry.VertexMorph;
 import com.cbg.studio.client.util.StringUtil;
+import com.cbg.studio.server.domain.geometry.Bone;
+import com.cbg.studio.server.domain.geometry.DisplayBoneGroupList;
+import com.cbg.studio.server.domain.geometry.Joint;
+import com.cbg.studio.server.domain.geometry.Material;
+import com.cbg.studio.server.domain.geometry.Motion;
+import com.cbg.studio.server.domain.geometry.RigidBody;
+import com.cbg.studio.server.domain.geometry.Triangle;
+import com.cbg.studio.server.domain.geometry.VertexMorph;
 
 /**
  * @author Siebe

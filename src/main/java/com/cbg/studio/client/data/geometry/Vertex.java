@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.cbg.studio.client.geometry;
+package com.cbg.studio.client.data.geometry;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import com.cbg.studio.client.util.StringUtil;
@@ -52,27 +51,6 @@ public class Vertex implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
-
-    @SuppressWarnings("all")
-    private void readObject(java.io.ObjectInputStream stream)
-            throws IOException, ClassNotFoundException {
-        this.position = (Vector)stream.readObject();
-        this.normal = (Vector)stream.readObject();
-        this.uv  = (Vector2)stream.readObject();
-        this.bone0Name = (String)stream.readObject();
-        this.bone1Name = (String)stream.readObject();
-        this.bone0Weight = stream.readInt();
-    }
-
-    private void writeObject(java.io.ObjectOutputStream stream)
-            throws IOException {
-        stream.writeObject(this.position);
-        stream.writeObject(this.normal);
-        stream.writeObject(this.uv);
-        stream.writeObject(this.bone0.getName());
-        stream.writeObject(this.bone1.getName());
-        stream.writeInt(this.bone0Weight);
     }
     
     public Vector getPosition() {
