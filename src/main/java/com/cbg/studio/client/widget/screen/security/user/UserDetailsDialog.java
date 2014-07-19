@@ -7,6 +7,7 @@ import com.cbg.studio.client.widget.dialog.AbstractAppDialog;
 import com.cbg.studio.client.widget.input.AppListBox;
 import com.cbg.studio.client.widget.screen.security.user.data.UserDetailsDto;
 import com.cbg.studio.client.widget.screen.util.UiAction;
+import com.cbg.studio.client.widget.screen.util.UiActionEvent;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -161,7 +162,7 @@ public class UserDetailsDialog extends AbstractAppDialog{
      */
     @Override
     protected void onOk() {
-        uiHandler.onUiAction(UiAction.REFRESH);
+        uiHandler.onUiAction(new UiActionEvent(this,UiAction.REFRESH));
     }
 
     /*

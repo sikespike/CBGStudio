@@ -8,5 +8,5 @@ package com.cbg.studio.client.widget.screen.util;
  * @since 0.1
  */
 public interface UiCallbackHandler {
-    public void onUiAction(UiAction action);
+    public void onUiAction(UiActionEvent action);
 }

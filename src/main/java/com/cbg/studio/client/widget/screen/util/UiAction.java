@@ -4,9 +4,9 @@
 package com.cbg.studio.client.widget.screen.util;
 
 /**
- * @author vladimir.kavoun
+ * @author Siebe
  *
  */
 public enum UiAction {
-    REFRESH
+    REFRESH,LOAD
 }

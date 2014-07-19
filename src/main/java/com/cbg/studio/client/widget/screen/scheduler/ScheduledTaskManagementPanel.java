@@ -8,6 +8,7 @@ import java.util.List;
 import com.cbg.studio.client.widget.panel.StyledPanel;
 import com.cbg.studio.client.widget.screen.scheduler.data.ScheduledTaskManagementDto;
 import com.cbg.studio.client.widget.screen.util.UiAction;
+import com.cbg.studio.client.widget.screen.util.UiActionEvent;
 import com.cbg.studio.client.widget.screen.util.UiCallbackHandler;
 import com.cbg.studio.client.widget.table.CBGTable;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -65,8 +66,8 @@ public class ScheduledTaskManagementPanel extends StyledPanel implements UiCallb
         }
     }
     
-    public void onUiAction(UiAction action){
-        if(action == UiAction.REFRESH){
+    public void onUiAction(UiActionEvent e){
+        if(e.getAction() == UiAction.REFRESH){
             this.loadData();
         }
     }
