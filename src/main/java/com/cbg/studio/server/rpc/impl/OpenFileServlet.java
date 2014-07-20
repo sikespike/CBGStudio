@@ -4,15 +4,17 @@
 package com.cbg.studio.server.rpc.impl;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.cbg.studio.server.domain.CATModel;
 
@@ -45,17 +47,31 @@ public class OpenFileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        ObjectInputStream in = new ObjectInputStream(req.getInputStream());
-
         try {
-            CATModel model = (CATModel) in.readObject();
-            in.close();
+            List<FileItem> multiparts = new ServletFileUpload(
+                    new DiskFileItemFactory()).parseRequest(req);
 
-            this.getServletContext().setAttribute("model", model);
+            for (FileItem item : multiparts) {
+                if (!item.isFormField()) {
+                    ObjectInputStream in = new ObjectInputStream(
+                            item.getInputStream());
 
-            resp.setStatus(HttpServletResponse.SC_OK);
+                    try {
+                        CATModel model = (CATModel) in.readObject();
+                        in.close();
+
+                        this.getServletContext().setAttribute("model", model);
+
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 }
