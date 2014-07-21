@@ -38,9 +38,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.gwtgl</groupId>
+            <groupId>com.googlecode</groupId>
             <artifactId>gwtgl</artifactId>
             <version>${gwtglVersion}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
