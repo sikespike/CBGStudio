@@ -72,4 +72,12 @@ public class Vector2 implements Serializable{
         this.y = y;
     }
 
+    public float[] toArray(){
+        float[] vector = new float[2];
+        
+        vector[0] = this.x;
+        vector[1] = this.y;
+        
+        return vector;
+    }
 }

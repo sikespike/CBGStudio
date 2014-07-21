@@ -126,4 +126,15 @@ public class Vector implements Serializable{
     public void setA(float a) {
         this.a = a;
     }
+    
+    public float[] toArray(){
+        float[] vector = new float[4];
+        
+        vector[0] = this.x;
+        vector[1] = this.y;
+        vector[2] = this.z;
+        vector[3] = this.a;
+        
+        return vector;
+    }
 }

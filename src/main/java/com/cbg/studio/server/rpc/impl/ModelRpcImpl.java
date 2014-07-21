@@ -6,6 +6,7 @@ package com.cbg.studio.server.rpc.impl;
 import com.cbg.studio.client.data.CATModelDto;
 import com.cbg.studio.client.rpc.ModelRpc;
 import com.cbg.studio.server.domain.CATModel;
+import com.cbg.studio.server.rpc.dto.CATModelDtoFactory;
 
 /**
  * @author Siebe
@@ -16,6 +17,8 @@ public class ModelRpcImpl extends AbstractStudioRpc implements ModelRpc {
     
     public CATModelDto getModel(){
         CATModel model = (CATModel)this.getServletContext().getAttribute("model");
-        return new CATModelDto();
+        return CATModelDtoFactory.createModelDto(model);
     }
+    
+    
 }
