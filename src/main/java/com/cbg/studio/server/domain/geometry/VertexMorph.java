@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -18,26 +16,6 @@ public class VertexMorph implements Serializable {
     private String name;
     private int type;
     private List<MorphData> data;
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-
-        b.append(StringUtil.jsonParamater("name", this.name)).append(",type:")
-                .append(this.type).append(",")
-                .append(StringUtil.jsonParamater("data", this.data));
-
-        b.append("}");
-
-        return b.toString();
-    }
 
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)

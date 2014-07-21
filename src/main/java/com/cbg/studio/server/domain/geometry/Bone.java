@@ -6,8 +6,6 @@ package com.cbg.studio.server.domain.geometry;
 import java.io.IOException;
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -17,39 +15,12 @@ public class Bone implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String name;
-    private Bone parent;
     private String parentName;
-    private Bone child;
     private String childName;
     private int type;
-    private Bone target;
     private String targetName;
 
     private Vector position;
-
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        String parentName = this.parent != null ? this.parent.getName()
-                : "null";
-        String childName = this.parent != null ? this.parent.getName() : "null";
-        String targetName = this.parent != null ? this.parent.getName()
-                : "null";
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("name", this.name)).append(",")
-                .append(StringUtil.jsonParamater("parentBone", parentName))
-                .append(",")
-                .append(StringUtil.jsonParamater("childBone", childName))
-                .append(",type:").append(this.type).append(",")
-                .append(StringUtil.jsonParamater("targetBone", targetName))
-                .append(",")
-                .append(StringUtil.jsonParamater("position", this.position));
-        b.append("}");
-
-        return b.toString();
-    }
     
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
@@ -65,16 +36,10 @@ public class Bone implements Serializable {
     private void writeObject(java.io.ObjectOutputStream stream)
             throws IOException {
         
-        String parentName = this.parent != null ? this.parent.getName()
-                : null;
-        String childName = this.parent != null ? this.parent.getName() : null;
-        String targetName = this.parent != null ? this.parent.getName()
-                : null;
-        
         stream.writeObject(this.name);
-        stream.writeObject(parentName);
-        stream.writeObject(childName);
-        stream.writeObject(targetName);
+        stream.writeObject(this.parentName);
+        stream.writeObject(this.childName);
+        stream.writeObject(this.targetName);
         stream.writeInt(this.type);
         stream.writeObject(this.position);
     }
@@ -94,36 +59,6 @@ public class Bone implements Serializable {
     }
 
     /**
-     * @return the parent
-     */
-    public Bone getParent() {
-        return parent;
-    }
-
-    /**
-     * @param parent
-     *            the parent to set
-     */
-    public void setParent(Bone parent) {
-        this.parent = parent;
-    }
-
-    /**
-     * @return the child
-     */
-    public Bone getChild() {
-        return child;
-    }
-
-    /**
-     * @param child
-     *            the child to set
-     */
-    public void setChild(Bone child) {
-        this.child = child;
-    }
-
-    /**
      * @return the type
      */
     public int getType() {
@@ -136,21 +71,6 @@ public class Bone implements Serializable {
      */
     public void setType(int type) {
         this.type = type;
-    }
-
-    /**
-     * @return the target
-     */
-    public Bone getTarget() {
-        return target;
-    }
-
-    /**
-     * @param target
-     *            the target to set
-     */
-    public void setTarget(Bone target) {
-        this.target = target;
     }
 
     /**

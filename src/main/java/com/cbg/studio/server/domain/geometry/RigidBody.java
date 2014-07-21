@@ -3,12 +3,10 @@ package com.cbg.studio.server.domain.geometry;
 import java.io.IOException;
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 public class RigidBody implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-    private Bone bone;
+    private String boneName;
     private int collisionGroupId;
     private int collisionMaskId;
     private String shape;
@@ -25,42 +23,10 @@ public class RigidBody implements Serializable {
 
     private String mode;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("name", this.name)).append(",")
-                .append(StringUtil.jsonParamater("bone", this.bone.getName()))
-                .append(",").append("collisionGroupId:")
-                .append(this.collisionGroupId).append(",collsionMaskId:")
-                .append(this.collisionMaskId)
-                .append(StringUtil.jsonParamater("shape", this.shape))
-                .append(",")
-                .append(StringUtil.jsonParamater("size", this.size))
-                .append(",")
-                .append(StringUtil.jsonParamater("position", this.position))
-                .append(",")
-                .append(StringUtil.jsonParamater("rotation", this.rotation))
-                .append(",mass:").append(this.mass).append(",velocityAtt:")
-                .append(this.velocityAtt).append(",rotationAtt:")
-                .append(this.rotationAtt).append(",bounce:")
-                .append(this.bounce).append(",friction:").append(this.friction)
-                .append(",mode:").append(this.mode);
-        b.append("}");
-
-        return b.toString();
-    }
-
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
         this.name = (String) stream.readObject();
-        this.bone = (Bone) stream.readObject();
+        this.boneName = (String) stream.readObject();
         this.collisionGroupId = stream.readInt();
         this.collisionMaskId = stream.readInt();
         this.shape = (String) stream.readObject();
@@ -79,18 +45,18 @@ public class RigidBody implements Serializable {
     private void writeObject(java.io.ObjectOutputStream stream)
             throws IOException {
         stream.writeObject(this.name);
-        stream.writeObject(this.bone);
+        stream.writeObject(this.boneName);
         stream.writeObject(this.collisionGroupId);
         stream.writeObject(this.collisionMaskId);
         stream.writeObject(this.shape);
         stream.writeObject(this.size);
         stream.writeObject(this.position);
         stream.writeObject(this.rotation);
-        stream.writeObject(this.mass);
-        stream.writeObject(this.velocityAtt);
-        stream.writeObject(this.rotationAtt);
-        stream.writeObject(this.bounce);
-        stream.writeObject(this.friction);
+        stream.writeFloat(this.mass);
+        stream.writeFloat(this.velocityAtt);
+        stream.writeFloat(this.rotationAtt);
+        stream.writeFloat(this.bounce);
+        stream.writeFloat(this.friction);
         stream.writeObject(this.mode);
     }
 
@@ -109,19 +75,12 @@ public class RigidBody implements Serializable {
         this.name = name;
     }
 
-    /**
-     * @return the bone
-     */
-    public Bone getBone() {
-        return bone;
+    public String getBoneName() {
+        return boneName;
     }
 
-    /**
-     * @param bone
-     *            the bone to set
-     */
-    public void setBone(Bone bone) {
-        this.bone = bone;
+    public void setBoneName(String boneName) {
+        this.boneName = boneName;
     }
 
     /**

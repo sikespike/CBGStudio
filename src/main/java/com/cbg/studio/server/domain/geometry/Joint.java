@@ -6,8 +6,6 @@ package com.cbg.studio.server.domain.geometry;
 import java.io.IOException;
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -15,8 +13,8 @@ import com.cbg.studio.client.util.StringUtil;
 public class Joint implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-    private RigidBody sourceRigidBody;
-    private RigidBody destRigidBody;
+    private String sourceRigidBodyName;
+    private String destRigidBodyName;
     private Vector location;
     private Vector rotation;
     private Vector minLoc;
@@ -26,51 +24,11 @@ public class Joint implements Serializable {
     private Vector springConst;
     private Vector springRotConst;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("name", this.name))
-                .append(",")
-                .append(StringUtil.jsonParamater("sourceRigidBody",
-                        this.sourceRigidBody))
-                .append(",")
-                .append(StringUtil.jsonParamater("destRigidBody",
-                        this.sourceRigidBody))
-                .append(",")
-                .append(StringUtil.jsonParamater("location", this.location))
-                .append(",")
-                .append(StringUtil.jsonParamater("rotation", this.rotation))
-                .append(",")
-                .append(StringUtil.jsonParamater("minLoc", this.minLoc))
-                .append(",")
-                .append(StringUtil.jsonParamater("maxLoc", this.maxLoc))
-                .append(",")
-                .append(StringUtil.jsonParamater("minRot", this.minRot))
-                .append(",")
-                .append(StringUtil.jsonParamater("maxRot", this.maxRot))
-                .append(",")
-                .append(StringUtil.jsonParamater("springConst",
-                        this.springConst))
-                .append(",")
-                .append(StringUtil.jsonParamater("springRotConst",
-                        this.springRotConst));
-        b.append("}");
-
-        return b.toString();
-    }
-
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
         this.name = (String)stream.readObject();
-        this.sourceRigidBody = (RigidBody)stream.readObject();
-        this.destRigidBody = (RigidBody)stream.readObject();
+        this.sourceRigidBodyName = (String)stream.readObject();
+        this.destRigidBodyName = (String)stream.readObject();
         this.location = (Vector)stream.readObject();
         this.rotation = (Vector)stream.readObject();
         this.minLoc = (Vector)stream.readObject();
@@ -84,8 +42,8 @@ public class Joint implements Serializable {
     private void writeObject(java.io.ObjectOutputStream stream)
             throws IOException {
         stream.writeObject(this.name);
-        stream.writeObject(this.sourceRigidBody);
-        stream.writeObject(this.destRigidBody);
+        stream.writeObject(this.sourceRigidBodyName);
+        stream.writeObject(this.destRigidBodyName);
         stream.writeObject(this.location);
         stream.writeObject(this.rotation);
         stream.writeObject(this.minLoc);
@@ -112,34 +70,20 @@ public class Joint implements Serializable {
         this.name = name;
     }
 
-    /**
-     * @return the sourceRigidBody
-     */
-    public RigidBody getSourceRigidBody() {
-        return sourceRigidBody;
+    public String getSourceRigidBodyName() {
+        return sourceRigidBodyName;
     }
 
-    /**
-     * @param sourceRigidBody
-     *            the sourceRigidBody to set
-     */
-    public void setSourceRigidBody(RigidBody sourceRigidBody) {
-        this.sourceRigidBody = sourceRigidBody;
+    public void setSourceRigidBodyName(String sourceRigidBodyName) {
+        this.sourceRigidBodyName = sourceRigidBodyName;
     }
 
-    /**
-     * @return the destRigidBody
-     */
-    public RigidBody getDestRigidBody() {
-        return destRigidBody;
+    public String getDestRigidBodyName() {
+        return destRigidBodyName;
     }
 
-    /**
-     * @param destRigidBody
-     *            the destRigidBody to set
-     */
-    public void setDestRigidBody(RigidBody destRigidBody) {
-        this.destRigidBody = destRigidBody;
+    public void setDestRigidBodyName(String destRigidBodyName) {
+        this.destRigidBodyName = destRigidBodyName;
     }
 
     /**

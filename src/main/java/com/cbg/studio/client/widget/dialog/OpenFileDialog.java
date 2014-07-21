@@ -50,6 +50,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
         form.setEncoding(FormPanel.ENCODING_MULTIPART);
 
         fileUpload = new FileUpload();
+        fileUpload.setName("file");
 
         form.add(fileUpload);
 

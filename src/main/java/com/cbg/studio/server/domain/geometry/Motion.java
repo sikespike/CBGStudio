@@ -5,10 +5,7 @@ package com.cbg.studio.server.domain.geometry;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import com.cbg.studio.client.util.StringUtil;
 
 /**
  * @author Siebe
@@ -16,90 +13,56 @@ import com.cbg.studio.client.util.StringUtil;
  */
 public class Motion implements Serializable{
     private static final long serialVersionUID = 1L;
-    private Bone bone;
-    private Bone targetBone;
+    private String boneName;
+    private String targetBoneName;
     private int links;
     private int iteration;
     private float maxAngle;
-    private List<Bone> childBones;
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("bone", this.bone.getName()))
-                .append(",").append(StringUtil.jsonParamater("targetBone", this.targetBone.getName()))
-                .append(",links:").append(this.links).append(",iteration:")
-                .append(this.iteration).append(",maxAngle:")
-                .append(this.maxAngle).append(",");
-
-        List<String> boneNames = new ArrayList<String>();
-
-        for (int x = 0; x < childBones.size(); x++) {
-            boneNames.add(childBones.get(x).getName());
-        }
-
-        b.append(StringUtil.jsonParamater("childBones", boneNames));
-        b.append("}");
-
-        return b.toString();
-    }
+    private List<String> childBoneNames;
 
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.bone = (Bone)stream.readObject();
-        this.targetBone = (Bone)stream.readObject();
+        this.boneName = (String)stream.readObject();
+        this.targetBoneName = (String)stream.readObject();
         this.links = stream.readInt();
         this.iteration = stream.readInt();
         this.maxAngle = stream.readFloat();
-        this.childBones = (List<Bone>)stream.readObject();
+        this.childBoneNames = (List<String>)stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
             throws IOException {
-        stream.writeObject(this.bone);
-        stream.writeObject(this.targetBone);
+        stream.writeObject(this.boneName);
+        stream.writeObject(this.targetBoneName);
         stream.writeInt(this.links);
         stream.writeInt(this.iteration);
         stream.writeFloat(this.maxAngle);
-        stream.writeObject(this.childBones);
+        stream.writeObject(this.childBoneNames);
     }
     
-    /**
-     * @return the bone
-     */
-    public Bone getBone() {
-        return bone;
+    public String getBoneName() {
+        return boneName;
     }
 
-    /**
-     * @param bone
-     *            the bone to set
-     */
-    public void setBone(Bone bone) {
-        this.bone = bone;
+    public void setBoneName(String boneName) {
+        this.boneName = boneName;
     }
 
-    /**
-     * @return the targetBone
-     */
-    public Bone getTargetBone() {
-        return targetBone;
+    public String getTargetBoneName() {
+        return targetBoneName;
     }
 
-    /**
-     * @param targetBone
-     *            the targetBone to set
-     */
-    public void setTargetBone(Bone targetBone) {
-        this.targetBone = targetBone;
+    public void setTargetBoneName(String targetBoneName) {
+        this.targetBoneName = targetBoneName;
+    }
+
+    public List<String> getChildBoneNames() {
+        return childBoneNames;
+    }
+
+    public void setChildBoneNames(List<String> childBoneNames) {
+        this.childBoneNames = childBoneNames;
     }
 
     /**
@@ -146,19 +109,6 @@ public class Motion implements Serializable{
     public void setMaxAngle(float maxAngle) {
         this.maxAngle = maxAngle;
     }
-
-    /**
-     * @return the childBones
-     */
-    public List<Bone> getChildBones() {
-        return childBones;
-    }
-
-    /**
-     * @param childBones
-     *            the childBones to set
-     */
-    public void setChildBones(List<Bone> childBones) {
-        this.childBones = childBones;
-    }
+    
+    
 }

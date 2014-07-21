@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  *
@@ -46,17 +44,6 @@ public abstract class Polygon implements Serializable{
      */
     public void setVerticies(List<Vertex> verticies) {
         this.verts = verticies;
-    }
-    
-    @Override
-    public String toString(){
-        StringBuilder b = new StringBuilder();
-        
-        b.append("{polygon:");
-        b.append(StringUtil.serializeJsonList(this.verts));
-        b.append("}");
-        
-        return b.toString();
     }
     
     @SuppressWarnings("all")

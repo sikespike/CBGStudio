@@ -6,8 +6,6 @@ package com.cbg.studio.server.domain.geometry;
 import java.io.IOException;
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -19,9 +17,7 @@ public class Vertex implements Serializable {
 
     private Vector2 uv;
 
-    private Bone bone0;
     private String bone0Name;
-    private Bone bone1;
     private String bone1Name;
 
     private int bone0Weight;
@@ -30,28 +26,6 @@ public class Vertex implements Serializable {
         this.position = new Vector();
         this.normal = new Vector();
         this.uv = new Vector2();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-
-        b.append(StringUtil.jsonParamater("position", this.position))
-                .append(",")
-                .append(StringUtil.jsonParamater("normal", this.normal))
-                .append(",")
-                .append(StringUtil.jsonParamater("uv", this.uv))
-                .append(",")
-                .append(StringUtil.jsonParamater("bone0", this.bone0.getName()))
-                .append(",")
-                .append(StringUtil.jsonParamater("bone1", this.bone1.getName()))
-                .append(",").append(",bone0Weight:").append(this.bone0Weight);
-
-        b.append("}");
-
-        return b.toString();
     }
 
     @SuppressWarnings("all")
@@ -70,8 +44,8 @@ public class Vertex implements Serializable {
         stream.writeObject(this.position);
         stream.writeObject(this.normal);
         stream.writeObject(this.uv);
-        stream.writeObject(this.bone0.getName());
-        stream.writeObject(this.bone1.getName());
+        stream.writeObject(this.bone0Name);
+        stream.writeObject(this.bone1Name);
         stream.writeInt(this.bone0Weight);
     }
     
@@ -97,36 +71,6 @@ public class Vertex implements Serializable {
 
     public void setUv(Vector2 uv) {
         this.uv = uv;
-    }
-
-    /**
-     * @return the bone0
-     */
-    public Bone getBone0() {
-        return bone0;
-    }
-
-    /**
-     * @param bone0
-     *            the bone0 to set
-     */
-    public void setBone0(Bone bone0) {
-        this.bone0 = bone0;
-    }
-
-    /**
-     * @return the bone1
-     */
-    public Bone getBone1() {
-        return bone1;
-    }
-
-    /**
-     * @param bone1
-     *            the bone1 to set
-     */
-    public void setBone1(Bone bone1) {
-        this.bone1 = bone1;
     }
 
     /**
