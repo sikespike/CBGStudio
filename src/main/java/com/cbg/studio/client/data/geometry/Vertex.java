@@ -19,9 +19,7 @@ public class Vertex implements Serializable {
     private Vector2 uv;
 
     private Bone bone0;
-    private String bone0Name;
     private Bone bone1;
-    private String bone1Name;
 
     private int bone0Weight;
 
@@ -122,31 +120,4 @@ public class Vertex implements Serializable {
         this.bone0Weight = bone0Weight;
     }
 
-    /**
-     * @return the bone0Name
-     */
-    public String getBone0Name() {
-        return bone0Name;
-    }
-
-    /**
-     * @param bone0Name the bone0Name to set
-     */
-    public void setBone0Name(String bone0Name) {
-        this.bone0Name = bone0Name;
-    }
-
-    /**
-     * @return the bone1Name
-     */
-    public String getBone1Name() {
-        return bone1Name;
-    }
-
-    /**
-     * @param bone1Name the bone1Name to set
-     */
-    public void setBone1Name(String bone1Name) {
-        this.bone1Name = bone1Name;
-    }
 }

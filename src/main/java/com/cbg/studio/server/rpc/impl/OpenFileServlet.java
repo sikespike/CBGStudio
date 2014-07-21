@@ -23,7 +23,7 @@ import com.cbg.studio.server.domain.CATModel;
  * 
  */
 public class OpenFileServlet extends HttpServlet {
-
+	private static final long serialVersionUID = 1L;
     /*
      * (non-Javadoc)
      * 

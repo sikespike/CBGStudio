@@ -17,12 +17,9 @@ public class Bone implements Serializable {
 
     private String name;
     private Bone parent;
-    private String parentName;
     private Bone child;
-    private String childName;
     private int type;
     private Bone target;
-    private String targetName;
 
     private Vector position;
 
@@ -138,47 +135,5 @@ public class Bone implements Serializable {
      */
     public void setPosition(Vector position) {
         this.position = position;
-    }
-
-    /**
-     * @return the parentName
-     */
-    public String getParentName() {
-        return parentName;
-    }
-
-    /**
-     * @param parentName the parentName to set
-     */
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    /**
-     * @return the childName
-     */
-    public String getChildName() {
-        return childName;
-    }
-
-    /**
-     * @param childName the childName to set
-     */
-    public void setChildName(String childName) {
-        this.childName = childName;
-    }
-
-    /**
-     * @return the targetName
-     */
-    public String getTargetName() {
-        return targetName;
-    }
-
-    /**
-     * @param targetName the targetName to set
-     */
-    public void setTargetName(String targetName) {
-        this.targetName = targetName;
     }
 }

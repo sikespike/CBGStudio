@@ -11,6 +11,7 @@ import com.cbg.studio.client.data.geometry.Bone;
 import com.cbg.studio.client.data.geometry.DisplayBoneGroupList;
 import com.cbg.studio.client.data.geometry.Joint;
 import com.cbg.studio.client.data.geometry.Material;
+import com.cbg.studio.client.data.geometry.MorphData;
 import com.cbg.studio.client.data.geometry.Motion;
 import com.cbg.studio.client.data.geometry.RigidBody;
 import com.cbg.studio.client.data.geometry.Triangle;
@@ -19,6 +20,7 @@ import com.cbg.studio.client.data.geometry.Vector2;
 import com.cbg.studio.client.data.geometry.Vertex;
 import com.cbg.studio.client.data.geometry.VertexMorph;
 import com.cbg.studio.server.domain.CATModel;
+import com.google.gwt.dev.util.collect.HashMap;
 
 /**
  * @author Xif
@@ -26,190 +28,346 @@ import com.cbg.studio.server.domain.CATModel;
  */
 @SuppressWarnings("all")
 public class CATModelDtoFactory {
-    public static CATModelDto createModelDto(CATModel m) {
-        CATModelDto dto = new CATModelDto();
+	public static CATModelDto createModelDto(CATModel m) {
+		CATModelDto dto = new CATModelDto();
 
-        dto.setMaterials(convertMaterials(m.getMaterials()));
-        dto.setPolygons(convertPolygons(m.getPolygons()));
-        dto.setBones(convertBones(m.getBones()));
-        dto.setMotions(convertMotions(m.getMotions()));
-        dto.setVertexMorphList(convertMorphs(m.getVertexMorphList()));
-        dto.setDisplayBoneGroups(convertDisplayBoneGroups(m
-                .getDisplayBoneGroups()));
-        dto.setToonTextureList(m.getToonTextureList());
-        dto.setRigidBodyList(convertRigidBodies(m.getRigidBodyList()));
-        dto.setJointList(convertJoints(m.getJointList()));
+		dto.setMaterials(convertMaterials(m.getMaterials()));
+		dto.setBones(convertBones(m.getBones()));
 
-        return dto;
-    }
+		List<Bone> bones = dto.getBones();
+		HashMap<String, Bone> boneMap = new HashMap<String, Bone>();
 
-    private static <U, T> List<U> convertList(Class<U> outputType, List<T> domainList) {
-        List<U> list = new ArrayList<U>();
-        
-        for (T domain : domainList) {
-            list.add((U)createDto(outputType.getClass(), domain));
-        }
+		for (Bone b : bones) {
+			boneMap.put(b.getName(), b);
+		}
 
-        return list;
-    }
+		dto.setPolygons(convertPolygons(boneMap, m.getPolygons()));
+		dto.setMotions(convertMotions(boneMap,m.getMotions()));
+		dto.setVertexMorphList(convertMorphs(m.getVertexMorphList()));
+		dto.setDisplayBoneGroups(convertDisplayBoneGroups(boneMap,
+				m.getDisplayBoneGroups()));
+		dto.setToonTextureList(m.getToonTextureList());
+		dto.setRigidBodyList(convertRigidBodies(boneMap,
+				m.getRigidBodyList()));
+		
+		List<RigidBody> rigidBodies = dto.getRigidBodyList();
+		HashMap<String, RigidBody> bodyMap = new HashMap<String, RigidBody>();
 
-    private static <U, T> U createDto(Class<U> outputType, T domain) {
+		for (RigidBody b : rigidBodies) {
+			bodyMap.put(b.getName(), b);
+		}
+		
+		
+		dto.setJointList(convertJoints(bodyMap, m.getJointList()));
 
-        if (domain instanceof com.cbg.studio.server.domain.geometry.Material) {
-            return (U)createMaterial((com.cbg.studio.server.domain.geometry.Material) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.Triangle) {
-            return (U)createTriangle((com.cbg.studio.server.domain.geometry.Triangle) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.Bone) {
-            return (U)createBone((com.cbg.studio.server.domain.geometry.Bone) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.Motion) {
-            return (U)createMotion((com.cbg.studio.server.domain.geometry.Motion) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.VertexMorph) {
-            return (U)createVertexMorph((com.cbg.studio.server.domain.geometry.VertexMorph) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.DisplayBoneGroupList) {
-            return (U)createDisplayBoneGroupList((com.cbg.studio.server.domain.geometry.DisplayBoneGroupList) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.RigidBody) {
-            return (U)createRigidBody((com.cbg.studio.server.domain.geometry.RigidBody) domain);
-        } else if (domain instanceof com.cbg.studio.server.domain.geometry.Joint) {
-            return (U)createJoint((com.cbg.studio.server.domain.geometry.Joint) domain);
-        } else if(domain instanceof com.cbg.studio.server.domain.geometry.Vertex){
-            return (U)createVertex((com.cbg.studio.server.domain.geometry.Vertex)domain);
-        }
+		return dto;
+	}
 
-        return null;
-    }
+	private static <U, T> List<U> convertList(Class<U> outputType,
+			List<T> domainList) {
+		List<U> list = new ArrayList<U>();
 
-    public static Vector2 createVector2(com.cbg.studio.server.domain.geometry.Vector2 domain){
-        Vector2 vector = new Vector2(domain.toArray());
-        
-        return vector;
-    }
-    
-    public static Vertex createVertex(com.cbg.studio.server.domain.geometry.Vertex domain){
-        Vertex v = new Vertex();
-        
-        v.setBone0Name(domain.getBone0Name());
-        v.setBone1Name(domain.getBone1Name());
-        v.setBone0Weight(domain.getBone0Weight());
-        v.setPosition(createVector(domain.getPosition()));
-        v.setNormal(createVector(domain.getNormal()));
-        v.setUv(createVector2(domain.getUv()));
-        
-        return v;
-    }
-    
-    public static Triangle createTriangle(com.cbg.studio.server.domain.geometry.Triangle domain){
-        Triangle t = new Triangle();
-        
-        List<Vertex> list = convertList(Vertex.class, domain.getVerticies());
-        
-        t.setVerticies(list);
-        
-        return t;
-    }
-    
-    public static Bone createBone(com.cbg.studio.server.domain.geometry.Bone domain){
-        Bone b = new Bone();
-        
-        return b;
-    }
-    public static Motion createMotion(com.cbg.studio.server.domain.geometry.Motion domain){
-        Motion m = new Motion();
-        
-        return m;
-    }
-    public static VertexMorph createVertexMorph(com.cbg.studio.server.domain.geometry.VertexMorph domain){
-        VertexMorph m = new VertexMorph();
-        
-        return m;
-    }
-    public static DisplayBoneGroupList createDisplayBoneGroupList(com.cbg.studio.server.domain.geometry.DisplayBoneGroupList domain){
-        DisplayBoneGroupList l = new DisplayBoneGroupList();
-        
-        return l;
-    }
-    public static RigidBody createRigidBody(com.cbg.studio.server.domain.geometry.RigidBody domain){
-        RigidBody b = new RigidBody();
-        
-        return b;
-    }
-    public static Joint createJoint(com.cbg.studio.server.domain.geometry.Joint domain){
-        Joint j = new Joint();
-        
-        return j;
-    }
-    
-    
-    public static List<Material> convertMaterials(
-            List<com.cbg.studio.server.domain.geometry.Material> domainList) {
-        List<Material> list = (List<Material>)convertList(Material.class,domainList);
+		for (T domain : domainList) {
+			list.add((U) createDto(outputType.getClass(), domain));
+		}
 
-        return list;
-    }
+		return list;
+	}
 
-    public static Material createMaterial(
-            com.cbg.studio.server.domain.geometry.Material domain) {
-        Material m = new Material();
+	private static <U, T> U createDto(Class<U> outputType, T domain) {
 
-        m.setColor(createVector(domain.getColor()));
-        m.setSpecLight(createVector(domain.getSpecLight()));
-        m.setAmbientLight(createVector(domain.getAmbientLight()));
-        m.setTexture(domain.getTexture());
+		if (domain instanceof com.cbg.studio.server.domain.geometry.Material) {
+			return (U) createMaterial((com.cbg.studio.server.domain.geometry.Material) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.Triangle) {
+			return (U) createTriangle((com.cbg.studio.server.domain.geometry.Triangle) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.Motion) {
+			return (U) createMotion((com.cbg.studio.server.domain.geometry.Motion) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.VertexMorph) {
+			return (U) createVertexMorph((com.cbg.studio.server.domain.geometry.VertexMorph) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.DisplayBoneGroupList) {
+			return (U) createDisplayBoneGroupList((com.cbg.studio.server.domain.geometry.DisplayBoneGroupList) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.RigidBody) {
+			return (U) createRigidBody((com.cbg.studio.server.domain.geometry.RigidBody) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.Joint) {
+			return (U) createJoint((com.cbg.studio.server.domain.geometry.Joint) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.Vertex) {
+			return (U) createVertex((com.cbg.studio.server.domain.geometry.Vertex) domain);
+		} else if (domain instanceof com.cbg.studio.server.domain.geometry.MorphData) {
+			return (U) createMorphData((com.cbg.studio.server.domain.geometry.MorphData) domain);
+		}
 
-        return m;
-    }
+		return null;
+	}
 
-    public static Vector createVector(
-            com.cbg.studio.server.domain.geometry.Vector domain) {
-        Vector vector = new Vector(domain.toArray());
-        return vector;
-    }
+	public static Vector2 createVector2(
+			com.cbg.studio.server.domain.geometry.Vector2 domain) {
+		Vector2 vector = new Vector2(domain.toArray());
 
-    public static List<Triangle> convertPolygons(
-            List<com.cbg.studio.server.domain.geometry.Triangle> domainList) {
-        List<Triangle> list = convertList(Triangle.class, domainList);
+		return vector;
+	}
 
-        return list;
-    }
+	public static Vertex createVertex(
+			com.cbg.studio.server.domain.geometry.Vertex domain) {
+		Vertex v = new Vertex();
 
-    public static List<Bone> convertBones(
-            List<com.cbg.studio.server.domain.geometry.Bone> domainList) {
-        List<Bone> list = convertList(Bone.class, domainList);
+		v.setBone0Weight(domain.getBone0Weight());
+		v.setPosition(createVector(domain.getPosition()));
+		v.setNormal(createVector(domain.getNormal()));
+		v.setUv(createVector2(domain.getUv()));
 
-        return list;
-    }
+		return v;
+	}
 
-    public static List<Motion> convertMotions(
-            List<com.cbg.studio.server.domain.geometry.Motion> domainList) {
-        List<Motion> list = convertList(Motion.class, domainList);
+	public static Triangle createTriangle(
+			com.cbg.studio.server.domain.geometry.Triangle domain) {
+		Triangle t = new Triangle();
 
-        return list;
-    }
+		List<Vertex> list = convertList(Vertex.class, domain.getVerticies());
 
-    public static List<VertexMorph> convertMorphs(
-            List<com.cbg.studio.server.domain.geometry.VertexMorph> domainList) {
-        List<VertexMorph> list = convertList(VertexMorph.class, domainList);
+		t.setVerticies(list);
 
-        return list;
-    }
+		return t;
+	}
 
-    public static DisplayBoneGroupList convertDisplayBoneGroups(
-            com.cbg.studio.server.domain.geometry.DisplayBoneGroupList domainObject) {
-        DisplayBoneGroupList groupList = createDisplayBoneGroupList(domainObject);
+	public static Bone createBone(
+			com.cbg.studio.server.domain.geometry.Bone domain) {
+		Bone b = new Bone();
 
-        return groupList;
-    }
+		b.setName(domain.getName());
+		b.setType(domain.getType());
+		b.setPosition(createVector(domain.getPosition()));
 
-    public static List<RigidBody> convertRigidBodies(
-            List<com.cbg.studio.server.domain.geometry.RigidBody> domainList) {
-        List<RigidBody> list = convertList(RigidBody.class, domainList);
+		return b;
+	}
 
-        return list;
-    }
+	public static Motion createMotion(
+			com.cbg.studio.server.domain.geometry.Motion domain) {
+		Motion m = new Motion();
 
-    public static List<Joint> convertJoints(
-            List<com.cbg.studio.server.domain.geometry.Joint> domainList) {
-        List<Joint> list = convertList(Joint.class, domainList);
+		m.setLinks(domain.getLinks());
+		m.setIteration(domain.getIteration());
+		m.setMaxAngle(domain.getMaxAngle());
 
-        return list;
-    }
+		return m;
+	}
+
+	public static VertexMorph createVertexMorph(
+			com.cbg.studio.server.domain.geometry.VertexMorph domain) {
+		VertexMorph m = new VertexMorph();
+
+		m.setName(domain.getName());
+		m.setType(domain.getType());
+
+		List<MorphData> mData = convertList(MorphData.class, domain.getData());
+
+		m.setData(mData);
+
+		return m;
+	}
+
+	public static MorphData createMorphData(
+			com.cbg.studio.server.domain.geometry.MorphData domain) {
+		MorphData md = new MorphData();
+
+		md.setIndex(domain.getIndex());
+		md.setOffset(createVector(domain.getOffset()));
+
+		return md;
+	}
+
+	public static DisplayBoneGroupList createDisplayBoneGroupList(
+			com.cbg.studio.server.domain.geometry.DisplayBoneGroupList domain) {
+		DisplayBoneGroupList l = new DisplayBoneGroupList();
+
+		l.setKeys(domain.getKeys());
+
+		return l;
+	}
+
+	public static RigidBody createRigidBody(
+			com.cbg.studio.server.domain.geometry.RigidBody domain) {
+		RigidBody b = new RigidBody();
+
+		b.setName(domain.getName());
+		b.setCollisionGroupId(domain.getCollisionGroupId());
+		b.setCollisionMaskId(domain.getCollisionMaskId());
+		b.setShape(domain.getShape());
+		b.setSize(createVector(domain.getSize()));
+		b.setPosition(createVector(domain.getPosition()));
+		b.setRotation(createVector(domain.getRotation()));
+		b.setMass(domain.getMass());
+		b.setVelocityAtt(domain.getVelocityAtt());
+		b.setRotationAtt(domain.getRotationAtt());
+		b.setBounce(domain.getBounce());
+		b.setFriction(domain.getFriction());
+		b.setMode(domain.getMode());
+
+		return b;
+	}
+
+	public static Joint createJoint(
+			com.cbg.studio.server.domain.geometry.Joint domain) {
+		Joint j = new Joint();
+
+		j.setName(domain.getName());
+		j.setLocation(createVector(domain.getLocation()));
+		j.setRotation(createVector(domain.getRotation()));
+		j.setMinLoc(createVector(domain.getMinLoc()));
+		j.setMaxLoc(createVector(domain.getMaxLoc()));
+		j.setMinRot(createVector(domain.getMinRot()));
+		j.setMaxRot(createVector(domain.getMaxRot()));
+		j.setSpringConst(createVector(domain.getSpringConst()));
+		j.setSpringRotConst(createVector(domain.getSpringRotConst()));
+		
+		return j;
+	}
+
+	public static List<Material> convertMaterials(
+			List<com.cbg.studio.server.domain.geometry.Material> domainList) {
+		List<Material> list = (List<Material>) convertList(Material.class,
+				domainList);
+
+		return list;
+	}
+
+	public static Material createMaterial(
+			com.cbg.studio.server.domain.geometry.Material domain) {
+		Material m = new Material();
+
+		m.setColor(createVector(domain.getColor()));
+		m.setSpecLight(createVector(domain.getSpecLight()));
+		m.setAmbientLight(createVector(domain.getAmbientLight()));
+		m.setTexture(domain.getTexture());
+
+		return m;
+	}
+
+	public static Vector createVector(
+			com.cbg.studio.server.domain.geometry.Vector domain) {
+		Vector vector = new Vector(domain.toArray());
+		return vector;
+	}
+
+	public static List<Triangle> convertPolygons(HashMap<String,Bone> bones,
+			List<com.cbg.studio.server.domain.geometry.Triangle> domainList) {
+		List<Triangle> list = convertList(Triangle.class, domainList);
+
+		for(int x=0;x<list.size();x++){
+			Triangle t = list.get(x);
+			com.cbg.studio.server.domain.geometry.Triangle dt = domainList.get(x);
+			
+			List<Vertex> pList = t.getVerticies();
+			List<com.cbg.studio.server.domain.geometry.Vertex> dList = dt.getVerticies();
+			
+			for(int i=0;i<pList.size();i++){
+				Vertex v = pList.get(i);
+				com.cbg.studio.server.domain.geometry.Vertex vd = dList.get(i);
+				
+				v.setBone0(bones.get(vd.getBone0()));
+				v.setBone1(bones.get(vd.getBone1()));
+			}
+		}
+
+		return list;
+	}
+
+	public static List<Bone> convertBones(
+			List<com.cbg.studio.server.domain.geometry.Bone> domainList) {
+		List<Bone> list = convertList(Bone.class, domainList);
+		
+		HashMap<String, Bone> boneMap = new HashMap<String, Bone>();
+		
+		for (Bone b : list) {
+			boneMap.put(b.getName(), b);
+		}
+		
+		for(int x=0;x<list.size();x++){
+			Bone b = list.get(x);
+			com.cbg.studio.server.domain.geometry.Bone bd = domainList.get(x);
+			
+			b.setParent(boneMap.get(bd.getParent().getName()));
+			b.setChild(boneMap.get(bd.getChild().getName()));
+			b.setTarget(boneMap.get(bd.getTarget().getName()));
+		}
+		
+		return list;
+	}
+
+	public static List<Motion> convertMotions(HashMap<String,Bone> bones,
+			List<com.cbg.studio.server.domain.geometry.Motion> domainList) {
+		List<Motion> list = convertList(Motion.class, domainList);
+
+		for(int x=0;x<list.size();x++){
+			Motion m = list.get(x);
+			com.cbg.studio.server.domain.geometry.Motion md = domainList.get(x);
+			
+			m.setBone(bones.get(md.getBone().getName()));
+			m.setTargetBone(bones.get(md.getTargetBone().getName()));
+			
+			List<Bone> cBones = new ArrayList<Bone>();
+			for(com.cbg.studio.server.domain.geometry.Bone bd:md.getChildBones()){
+				cBones.add(bones.get(bd.getName()));
+			}
+			
+			m.setChildBones(cBones);
+		}
+		
+		return list;
+	}
+
+	public static List<VertexMorph> convertMorphs(
+			List<com.cbg.studio.server.domain.geometry.VertexMorph> domainList) {
+		List<VertexMorph> list = convertList(VertexMorph.class, domainList);
+
+		return list;
+	}
+
+	public static DisplayBoneGroupList convertDisplayBoneGroups(
+			HashMap<String,Bone> bones,
+			com.cbg.studio.server.domain.geometry.DisplayBoneGroupList domain) {
+		DisplayBoneGroupList groupList = createDisplayBoneGroupList(domain);
+		
+		for(String key:groupList.getKeys()){
+			List<com.cbg.studio.server.domain.geometry.Bone> gList = domain.getGroup(key);
+			
+			List<Bone> groupBones = new ArrayList<Bone>();
+			
+			for(com.cbg.studio.server.domain.geometry.Bone bd:gList){
+				groupBones.add(bones.get(bd.getName()));
+			}
+			
+			groupList.put(key, groupBones);
+		}
+
+		return groupList;
+	}
+
+	public static List<RigidBody> convertRigidBodies(HashMap<String,Bone> bones,
+			List<com.cbg.studio.server.domain.geometry.RigidBody> domainList) {
+		List<RigidBody> list = convertList(RigidBody.class, domainList);
+
+		for(int x=0;x<list.size();x++){
+			RigidBody rb = list.get(x);
+			com.cbg.studio.server.domain.geometry.RigidBody md = domainList.get(x);
+			
+			rb.setBone(bones.get(md.getBone().getName()));
+		}
+		
+		return list;
+	}
+
+	public static List<Joint> convertJoints(HashMap<String,RigidBody> bodies,
+			List<com.cbg.studio.server.domain.geometry.Joint> domainList) {
+		List<Joint> list = convertList(Joint.class, domainList);
+
+		for(int x=0;x<list.size();x++){
+			Joint j = list.get(x);
+			com.cbg.studio.server.domain.geometry.Joint dj = domainList.get(x);
+			
+			j.setSourceRigidBody(bodies.get(dj.getSourceRigidBody().getName()));
+			j.setDestRigidBody(bodies.get(dj.getDestRigidBody().getName()));
+		}
+		
+		return list;
+	}
 }
