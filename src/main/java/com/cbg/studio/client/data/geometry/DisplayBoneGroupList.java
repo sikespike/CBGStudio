@@ -62,10 +62,6 @@ public class DisplayBoneGroupList implements Serializable{
     }
     
     public void put(String key, List<Bone> group) {
-        if (!this.groups.containsKey(key)) {
-            this.addKey(key);
-        }
-
         this.groups.put(key, group);
     }
 

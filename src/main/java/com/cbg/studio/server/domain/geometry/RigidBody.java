@@ -46,8 +46,8 @@ public class RigidBody implements Serializable {
             throws IOException {
         stream.writeObject(this.name);
         stream.writeObject(this.boneName);
-        stream.writeObject(this.collisionGroupId);
-        stream.writeObject(this.collisionMaskId);
+        stream.writeInt(this.collisionGroupId);
+        stream.writeInt(this.collisionMaskId);
         stream.writeObject(this.shape);
         stream.writeObject(this.size);
         stream.writeObject(this.position);

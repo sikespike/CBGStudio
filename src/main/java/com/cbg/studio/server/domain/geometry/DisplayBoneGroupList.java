@@ -3,6 +3,7 @@
  */
 package com.cbg.studio.server.domain.geometry;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +26,19 @@ public class DisplayBoneGroupList implements Serializable{
     public DisplayBoneGroupList() {
         this.keys = new ArrayList<String>();
         this.groups = new HashMap<String, List<String>>();
+    }
+    
+    @SuppressWarnings("all")
+    private void readObject(java.io.ObjectInputStream stream)
+            throws IOException, ClassNotFoundException {
+        this.keys = (List<String>)stream.readObject();
+        this.groups = (Map<String, List<String>>)stream.readObject();
+    }
+
+    private void writeObject(java.io.ObjectOutputStream stream)
+            throws IOException {
+        stream.writeObject(this.keys);
+        stream.writeObject(this.groups);
     }
     
     public void put(String key, List<String> group) {

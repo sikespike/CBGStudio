@@ -14,7 +14,6 @@ import com.cbg.studio.server.domain.geometry.Material;
 import com.cbg.studio.server.domain.geometry.Motion;
 import com.cbg.studio.server.domain.geometry.RigidBody;
 import com.cbg.studio.server.domain.geometry.Triangle;
-import com.cbg.studio.server.domain.geometry.Vector;
 import com.cbg.studio.server.domain.geometry.VertexMorph;
 
 /**
@@ -53,6 +52,7 @@ public class CATModel implements Serializable{
         stream.writeObject(this.materials);
         stream.writeObject(this.polygons);
         stream.writeObject(this.bones);
+        stream.writeObject(this.motions);
         stream.writeObject(this.vertexMorphList);
         stream.writeObject(this.displayBoneGroups);
         stream.writeObject(this.toonTextureList);

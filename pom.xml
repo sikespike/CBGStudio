@@ -76,8 +76,8 @@
                         </goals>
                     </execution>
                 </executions>
-                <!-- Plugin configuration. There are many available options, see 
-                    gwt-maven-plugin documentation at codehaus.org -->
+                <!-- Plugin configuration. There are many available options, 
+                    see gwt-maven-plugin documentation at codehaus.org -->
                 <configuration>
                     <runTarget>CBGStudio.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>

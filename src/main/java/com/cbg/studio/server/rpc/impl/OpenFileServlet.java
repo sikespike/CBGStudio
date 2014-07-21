@@ -3,10 +3,7 @@
  */
 package com.cbg.studio.server.rpc.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.List;
 
@@ -20,10 +17,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.cbg.studio.server.domain.CATModel;
-import com.cbg.studio.server.domain.geometry.Bone;
-import com.cbg.studio.server.domain.geometry.Triangle;
-import com.cbg.studio.server.domain.geometry.Vertex;
-import com.google.gwt.dev.util.collect.HashMap;
 
 /**
  * @author Siebe

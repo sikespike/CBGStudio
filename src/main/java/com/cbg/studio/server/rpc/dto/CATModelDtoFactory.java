@@ -80,6 +80,8 @@ public class CATModelDtoFactory {
             return (U) createTriangle((com.cbg.studio.server.domain.geometry.Triangle) domain);
         } else if (domain instanceof com.cbg.studio.server.domain.geometry.Motion) {
             return (U) createMotion((com.cbg.studio.server.domain.geometry.Motion) domain);
+        } else if (domain instanceof com.cbg.studio.server.domain.geometry.Bone) {
+            return (U) createBone((com.cbg.studio.server.domain.geometry.Bone) domain);
         } else if (domain instanceof com.cbg.studio.server.domain.geometry.VertexMorph) {
             return (U) createVertexMorph((com.cbg.studio.server.domain.geometry.VertexMorph) domain);
         } else if (domain instanceof com.cbg.studio.server.domain.geometry.DisplayBoneGroupList) {
