@@ -1,20 +1,19 @@
 package com.cbg.studio.client;
 
-import com.cbg.studio.client.menu.CBGStudioMenu;
+import com.cbg.studio.client.controller.AppController;
+import com.cbg.studio.client.controller.util.AppUtil;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class CBGStudio implements EntryPoint {
-    private CBGStudioMenu menu;
     /**
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        this.menu = new CBGStudioMenu();
+        AppController controller = AppUtil.getController();
         
-        RootPanel.get("menu").add(this.menu);
+        controller.initialize();
     }
 }

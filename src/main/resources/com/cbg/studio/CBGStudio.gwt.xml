@@ -5,6 +5,7 @@
 <module rename-to='CBGStudio'>
     <!-- Inherit the core Web Toolkit stuff. -->
     <inherits name='com.google.gwt.user.User' />
+    <inherits name='com.googlecode.gwtgl.binding'/>
 
     <!-- We need the JUnit module in the main module, -->
     <!-- otherwise eclipse complains (Google plugin bug?) -->
