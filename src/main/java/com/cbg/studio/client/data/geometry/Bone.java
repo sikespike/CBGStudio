@@ -5,8 +5,6 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -23,7 +21,7 @@ public class Bone implements Serializable {
 
     private Vector position;
 
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -45,7 +43,7 @@ public class Bone implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
+    }*/
     
     /**
      * @return the name

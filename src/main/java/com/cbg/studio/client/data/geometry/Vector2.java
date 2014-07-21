@@ -33,14 +33,14 @@ public class Vector2 implements Serializable{
         }
     }
     
-    @Override
+    /*@Override
     public String toString(){
         StringBuilder b = new StringBuilder();
         
         b.append("{x:").append(this.x).append(",y:").append(this.y).append("}");
         
         return b.toString();
-    }
+    }*/
     
     public float getX() {
         return x;

@@ -2,8 +2,6 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 public class RigidBody implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
@@ -29,7 +27,7 @@ public class RigidBody implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -54,7 +52,7 @@ public class RigidBody implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
+    }*/
 
     /**
      * @return the name

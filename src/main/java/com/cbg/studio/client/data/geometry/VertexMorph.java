@@ -6,8 +6,6 @@ package com.cbg.studio.client.data.geometry;
 import java.io.Serializable;
 import java.util.List;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -23,7 +21,7 @@ public class VertexMorph implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -36,7 +34,7 @@ public class VertexMorph implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
+    }*/
     
     /**
      * @return the name

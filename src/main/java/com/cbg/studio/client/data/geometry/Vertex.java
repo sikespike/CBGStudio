@@ -5,8 +5,6 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -29,7 +27,7 @@ public class Vertex implements Serializable {
         this.uv = new Vector2();
     }
 
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -49,7 +47,7 @@ public class Vertex implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
+    }*/
     
     public Vector getPosition() {
         return position;

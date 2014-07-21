@@ -103,6 +103,7 @@
                     <execution>
                         <goals>
                             <goal>compile</goal>
+                            <goal>debug</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -111,6 +112,7 @@
                 <configuration>
                     <runTarget>CBGStudio.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
+                    <extraJvmArgs>-Xms512m -Xmx1024m -XX:MaxPermSize=2048m</extraJvmArgs>
                 </configuration>
             </plugin>
             <!-- Copy static web files before executing gwt:run -->

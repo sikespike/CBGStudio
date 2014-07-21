@@ -7,8 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  *
@@ -47,7 +45,7 @@ public abstract class Polygon implements Serializable{
         this.verts = verticies;
     }
     
-    @Override
+    /*@Override
     public String toString(){
         StringBuilder b = new StringBuilder();
         
@@ -56,5 +54,5 @@ public abstract class Polygon implements Serializable{
         b.append("}");
         
         return b.toString();
-    }
+    }*/
 }

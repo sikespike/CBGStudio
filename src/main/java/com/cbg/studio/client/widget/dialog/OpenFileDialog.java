@@ -90,7 +90,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
                 setModel(result);
                 OpenFileDialog.this.uiHandler.onUiAction(new UiActionEvent(
                         OpenFileDialog.this, UiAction.LOAD));
-                OpenFileDialog.this.hide(true);
+                hide(true);
             }
 
         });

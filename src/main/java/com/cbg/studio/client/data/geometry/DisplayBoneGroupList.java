@@ -5,12 +5,9 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.cbg.studio.client.util.StringUtil;
 
 /**
  * @author Xif
@@ -29,7 +26,7 @@ public class DisplayBoneGroupList implements Serializable{
         this.groups = new HashMap<String, List<Bone>>();
     }
 
-    @Override
+    /*@Override
     public String toString(){
         StringBuilder b = new StringBuilder();
         
@@ -59,16 +56,10 @@ public class DisplayBoneGroupList implements Serializable{
         
         b.append("]}");
         return b.toString();
-    }
+    }*/
     
     public void put(String key, List<Bone> group) {
         this.groups.put(key, group);
-    }
-
-    private void addKey(String key) {
-        this.keys.add(key);
-
-        Collections.sort(this.keys);
     }
 
     public List<Bone> getGroup(String key) {

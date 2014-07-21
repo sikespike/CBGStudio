@@ -41,7 +41,7 @@ public class Vector implements Serializable{
         }
     }
     
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -49,7 +49,7 @@ public class Vector implements Serializable{
                 .append(z).append(",a:").append(a).append("}");
 
         return b.toString();
-    }
+    }*/
 
     /**
      * @return the x

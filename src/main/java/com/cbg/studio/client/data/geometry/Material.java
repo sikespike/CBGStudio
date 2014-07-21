@@ -12,7 +12,7 @@ public class Material implements Serializable{
 
     private String texture;
 
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -23,7 +23,7 @@ public class Material implements Serializable{
                 .append("\"" + texture + "\"").append("}");
 
         return b.toString();
-    }
+    }*/
     
     /**
      * @return the color

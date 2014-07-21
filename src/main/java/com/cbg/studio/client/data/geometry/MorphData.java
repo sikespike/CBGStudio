@@ -5,8 +5,6 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
-import com.cbg.studio.client.util.StringUtil;
-
 /**
  * @author Siebe
  * 
@@ -21,7 +19,7 @@ public class MorphData implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder b = new StringBuilder();
 
@@ -31,7 +29,7 @@ public class MorphData implements Serializable {
         b.append("}");
 
         return b.toString();
-    }
+    }*/
     
     /**
      * @return the index
