@@ -7,6 +7,14 @@
     <welcome-file-list>
         <welcome-file>CBGStudio.html</welcome-file>
     </welcome-file-list>
+    <!-- Spring classical web application context declaration -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>modelRpc</servlet-name>
         <servlet-class>com.cbg.studio.server.rpc.impl.ModelRpcImpl</servlet-class>
@@ -23,4 +31,5 @@
         <servlet-name>openFileServlet</servlet-name>
         <url-pattern>/CBGStudio/openFile</url-pattern>
     </servlet-mapping>
+
 </web-app>

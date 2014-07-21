@@ -48,30 +48,36 @@ public class OpenFileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        try {
-            List<FileItem> multiparts = new ServletFileUpload(
-                    new DiskFileItemFactory()).parseRequest(req);
+        if (this.getServletContext().getAttribute("model") != null) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            try {
+                List<FileItem> multiparts = new ServletFileUpload(
+                        new DiskFileItemFactory()).parseRequest(req);
 
-            for (FileItem item : multiparts) {
-                if (!item.isFormField()) {
-                    
-                    ObjectInputStream in = new ObjectInputStream(item.getInputStream());
+                for (FileItem item : multiparts) {
+                    if (!item.isFormField()) {
 
-                    try {
-                        CATModel model = (CATModel) in.readObject();
-                        in.close();
+                        ObjectInputStream in = new ObjectInputStream(
+                                item.getInputStream());
 
-                        this.getServletContext().setAttribute("model", model);
+                        try {
+                            CATModel model = (CATModel) in.readObject();
+                            in.close();
 
-                        resp.setStatus(HttpServletResponse.SC_OK);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                            this.getServletContext().setAttribute("model",
+                                    model);
+
+                            resp.setStatus(HttpServletResponse.SC_OK);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-            }
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }

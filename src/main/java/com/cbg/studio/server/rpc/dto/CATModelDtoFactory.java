@@ -4,6 +4,7 @@
 package com.cbg.studio.server.rpc.dto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.cbg.studio.client.data.CATModelDto;
@@ -20,7 +21,6 @@ import com.cbg.studio.client.data.geometry.Vector2;
 import com.cbg.studio.client.data.geometry.Vertex;
 import com.cbg.studio.client.data.geometry.VertexMorph;
 import com.cbg.studio.server.domain.CATModel;
-import com.google.gwt.dev.util.collect.HashMap;
 
 /**
  * @author Xif
