@@ -3,58 +3,49 @@
  */
 package com.cbg.studio.client.widget.panel;
 
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.cbg.studio.client.widget.dialog.AbstractAppDialog;
+import com.cbg.studio.client.widget.screen.util.UiAction;
+import com.cbg.studio.client.widget.screen.util.UiActionEvent;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Button;
 
 /**
  * @author vladimir.kavoun
  * @since 0.1
  */
-public abstract class AbstractStyledPanel extends FlexTable {
-    private int buttonCols = 0;
-    
-    protected FlowPanel body;
-    protected FlexTable buttons;
+public abstract class AbstractStyledPanel extends AbstractAppDialog implements
+        UiCollapsibleEventPanel, ClickHandler {
+
+    private Button collapse;
+    private Button close;
     
     public AbstractStyledPanel() {
         super();
-        init();
-    }
-    
-    private void init() {
-        this.body = new FlowPanel();
-
-        this.buttons = new FlexTable();
-
-        super.add(this.body);
-        super.add(this.buttons);
-
-        this.buttons.getElement().addClassName("display-none");
-        
-        this.addStyles();
     }
 
     @Override
-    public void add(Widget w){
-        this.body.add(w);
-    }
-    
-    public void addButton(Widget button){
-        this.buttons.setWidget(0, this.buttonCols, button);
-        this.buttonCols++;
-        this.buttons.getElement().replaceClassName("display-none", "display-show");
+    public void onClick(ClickEvent e){
+        if(e.getSource() == collapse){
+            this.uiHandler.onUiAction(new UiActionEvent(this, UiAction.COLLAPSE));
+        } else if(e.getSource() == close){
+            this.uiHandler.onUiAction(new UiActionEvent(this, UiAction.CLOSE));
+            this.hide(true);
+        }
     }
     
     @Override
-    public void setWidth(String width){
-        String innerWidthString = width.replaceAll("px", "");
-        int innerWidth = Integer.parseInt(innerWidthString);
-        innerWidth += 10;
-        
-        super.setWidth(width);
-        this.body.setWidth(innerWidth+"px");
+    protected void onOk() {
+
+    }
+
+    @Override
+    protected void onCancel() {
+
     }
     
-    protected abstract void addStyles();
+    @Override
+    public void openPanel(){
+        this.show();
+    }
 }

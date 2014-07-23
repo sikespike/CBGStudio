@@ -7,7 +7,7 @@ package com.cbg.studio.client.widget.panel;
  * @author vladimir.kavoun
  *
  */
-public class StyledPanel extends AbstractStyledPanel {
+public class StyledPanel extends AbstractStyledFormPanel {
 
     /* (non-Javadoc)
      * @see com.vfmlSupportApp.client.app.widget.panel.AbstractStyledPanel#addStyles()

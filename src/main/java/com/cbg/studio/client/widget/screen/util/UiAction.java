@@ -8,5 +8,5 @@ package com.cbg.studio.client.widget.screen.util;
  *
  */
 public enum UiAction {
-    REFRESH,LOAD
+    REFRESH,LOAD,RENDER,OPEN,COLLAPSE,CLOSE
 }
