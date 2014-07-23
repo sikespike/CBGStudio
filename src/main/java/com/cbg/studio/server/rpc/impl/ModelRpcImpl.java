@@ -17,6 +17,10 @@ public class ModelRpcImpl extends AbstractStudioRpc implements ModelRpc {
     
     public CATModelDto getModel(){
         CATModel model = (CATModel)this.getServletContext().getAttribute("model");
-        return CATModelDtoFactory.createModelDto(model);
+        CATModelDto dto = CATModelDtoFactory.createModelDto(model);
+        
+        this.getServletContext().removeAttribute("model");
+        
+        return dto;
     }
 }

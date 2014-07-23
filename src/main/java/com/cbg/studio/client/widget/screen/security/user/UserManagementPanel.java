@@ -5,7 +5,7 @@ package com.cbg.studio.client.widget.screen.security.user;
 
 import java.util.List;
 
-import com.cbg.studio.client.widget.panel.StyledPanel;
+import com.cbg.studio.client.widget.panel.StyledFormPanel;
 import com.cbg.studio.client.widget.screen.security.user.data.UserManagementDto;
 import com.cbg.studio.client.widget.screen.util.UiAction;
 import com.cbg.studio.client.widget.screen.util.UiActionEvent;
@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.FlexTable;
  * @author vladimir.kavoun
  * 
  */
-public class UserManagementPanel extends StyledPanel implements UiCallbackHandler{
+public class UserManagementPanel extends StyledFormPanel implements UiCallbackHandler{
 
     private CBGTable userTable;
 

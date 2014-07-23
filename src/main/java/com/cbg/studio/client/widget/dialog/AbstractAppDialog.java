@@ -3,6 +3,7 @@
  */
 package com.cbg.studio.client.widget.dialog;
 
+import com.cbg.studio.client.widget.panel.UiEventPanel;
 import com.cbg.studio.client.widget.screen.util.UiCallbackHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -15,7 +16,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author vladimir.kavoun
  *
  */
-public abstract class AbstractAppDialog extends DialogBox implements ClickHandler{
+public abstract class AbstractAppDialog extends DialogBox implements UiEventPanel, ClickHandler{
     private int buttonCols = 0;
     
     private FlexTable wrapper;
@@ -137,10 +138,7 @@ public abstract class AbstractAppDialog extends DialogBox implements ClickHandle
         }
     }
 
-    public UiCallbackHandler getUiHandler() {
-        return uiHandler;
-    }
-
+    @Override
     public void setUiHandler(UiCallbackHandler uiHandler) {
         this.uiHandler = uiHandler;
     }

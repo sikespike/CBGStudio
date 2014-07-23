@@ -43,3 +43,12 @@ body {
 .gwt-DialogBox .dialogMiddleCenter {
     padding: 0;
 }
+
+.collapsed-widget{
+    width:50px;
+    height:50x;
+    
+    border-radius:10px;
+    border:1px solid #cecece;
+    background: #cfcfcf;
+}
