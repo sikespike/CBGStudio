@@ -42,6 +42,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.typedarrays.shared.ArrayBuffer;
 
+@SuppressWarnings("all")
 public class BufferGeometry extends EventDispatcher {
     protected BufferGeometry() {
     }

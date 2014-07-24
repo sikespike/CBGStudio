@@ -42,6 +42,7 @@ import com.cbg.studio.client.gwt.js.extras.core.Path;
 import com.cbg.studio.client.gwt.js.math.Vector3;
 import com.google.gwt.core.client.JsArray;
 
+@SuppressWarnings("all")
 public class TubeGeometry extends Geometry {
     protected TubeGeometry() {
     }

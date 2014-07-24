@@ -159,7 +159,6 @@ import com.cbg.studio.client.gwt.js.math.Triangle;
 import com.cbg.studio.client.gwt.js.math.Vector2;
 import com.cbg.studio.client.gwt.js.math.Vector3;
 import com.cbg.studio.client.gwt.js.math.Vector4;
-import com.cbg.studio.client.gwt.js.math.Vertex;
 import com.cbg.studio.client.gwt.js.objects.Bone;
 import com.cbg.studio.client.gwt.js.objects.LOD;
 import com.cbg.studio.client.gwt.js.objects.Line;
@@ -192,7 +191,7 @@ import com.google.gwt.dom.client.ImageElement;
  * @author aki
  * 
  */
-
+@SuppressWarnings("all")
 public class THREE {
     public static final native DepthPassPlugin DepthPassPlugin()/*-{
                                                                 return new $wnd.THREE.DepthPassPlugin();
@@ -919,16 +918,6 @@ public class THREE {
             JsArray<Material> materials)/*-{
                                         return new $wnd.THREE.MeshFaceMaterial(materials);
                                         }-*/;
-
-    /**
-     * @deprecated r49
-     * @param vector3f
-     * @return
-     */
-    @Deprecated
-    public static native final Vertex Vertex(Vector3 vector3f)/*-{
-                                                              return new $wnd.THREE.Vertex( vector3f);
-                                                              }-*/;
 
     public static native final Vector3 Vector3(double x, double y, double z)/*-{
                                                                             return new $wnd.THREE.Vector3( x,y,z);

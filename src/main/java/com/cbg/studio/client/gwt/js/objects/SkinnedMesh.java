@@ -3,6 +3,7 @@ package com.cbg.studio.client.gwt.js.objects;
 import com.cbg.studio.client.gwt.js.math.Matrix4;
 import com.google.gwt.core.client.JsArray;
 
+@SuppressWarnings("all")
 public class SkinnedMesh extends Mesh {
     protected SkinnedMesh() {
     }

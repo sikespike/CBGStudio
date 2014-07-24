@@ -40,6 +40,7 @@ package com.cbg.studio.client.gwt.js.extras.geometries;
 import com.cbg.studio.client.gwt.js.core.Geometry;
 import com.google.gwt.core.client.JsArray;
 
+@SuppressWarnings("all")
 public class TorusKnotGeometry extends Geometry {
     protected TorusKnotGeometry() {
     }
