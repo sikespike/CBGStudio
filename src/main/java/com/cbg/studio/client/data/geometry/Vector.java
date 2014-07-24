@@ -4,6 +4,8 @@
 package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Siebe
@@ -109,5 +111,15 @@ public class Vector implements Serializable{
      */
     public void setA(float a) {
         this.a = a;
+    }
+    
+    public List<Float> toFloatList3(){
+        List<Float> list = new ArrayList<Float>();
+        
+        list.add(new Float(this.x));
+        list.add(new Float(this.y));
+        list.add(new Float(this.z));
+        
+        return list;
     }
 }

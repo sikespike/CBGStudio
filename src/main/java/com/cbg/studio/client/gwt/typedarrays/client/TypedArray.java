@@ -71,7 +71,7 @@ public abstract class TypedArray<T extends TypedArray<T>> extends ArrayBufferVie
       compileTimeSupport = GWT.create(TypedArrayCompileTimeSupport.class);
     }
     if (!compileTimeSupport.isSupported()) {
-      return false;
+      return false | isSupportedRuntime();
     }
     return isSupportedRuntime();
   };

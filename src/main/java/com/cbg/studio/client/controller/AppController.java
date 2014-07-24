@@ -38,8 +38,6 @@ public class AppController implements UiCallbackHandler {
         this.content.setWidget(0, 0, this.engine);
 
         optionsPanel = new OptionsPanel(this);
-        optionsPanel.setWidth("50px");
-        optionsPanel.setHeight("100%");
 
         this.content.setWidget(0, 1, this.optionsPanel);
 
@@ -50,6 +48,11 @@ public class AppController implements UiCallbackHandler {
         this.collapsedPanel.getElement().getParentElement()
                 .setAttribute("colspan", "2");
         
+        this.content.getColumnFormatter().setWidth(0, "100%");
+        this.content.getColumnFormatter().setWidth(1, "50px");
+        this.content.setCellSpacing(0);
+        this.content.setCellPadding(0);
+        this.content.setStyleName("content-panel");
         RootPanel.get("menu").add(this.menu);
         RootPanel.get("contentWrapper").add(this.content);
     }
@@ -62,7 +65,7 @@ public class AppController implements UiCallbackHandler {
                 this.engine.setModel(d.getModel());
             }
         } else if (action.getAction().equals(UiAction.RENDER)) {
-            this.engine.drawScene();
+            this.engine.render();
         }
 
     }

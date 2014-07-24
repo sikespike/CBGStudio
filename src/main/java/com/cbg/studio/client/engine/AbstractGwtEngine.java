@@ -28,15 +28,18 @@ public abstract class AbstractGwtEngine extends FlowPanel {
      */
     protected AbstractGwtEngine() {
         final Canvas webGLCanvas = Canvas.createIfSupported();
-        webGLCanvas.setCoordinateSpaceHeight(500);
-        webGLCanvas.setCoordinateSpaceWidth(500);
+        webGLCanvas.setCoordinateSpaceWidth(640);
+        webGLCanvas.setCoordinateSpaceHeight(480);
+        webGLCanvas.setWidth("640px");
+        webGLCanvas.setHeight("480px");
         glContext = (WebGLRenderingContext) webGLCanvas
                 .getContext("experimental-webgl");
         if (glContext == null) {
             Window.alert("Sorry, Your Browser doesn't support WebGL!");
         }
-        glContext.viewport(0, 0, 1024, 768);
+        glContext.viewport(0, 0, 640, 480);
         this.add(webGLCanvas);
+        this.initialize();
     }
 
     public void initialize() {
@@ -45,7 +48,6 @@ public abstract class AbstractGwtEngine extends FlowPanel {
         glContext.clearDepth(1.0f);
         glContext.enable(WebGLRenderingContext.DEPTH_TEST);
         glContext.depthFunc(WebGLRenderingContext.LEQUAL);
-        initBuffers();
     }
 
     public void initShaders() {
@@ -90,16 +92,25 @@ public abstract class AbstractGwtEngine extends FlowPanel {
     private void initBuffers() {
         vertexBuffer = glContext.createBuffer();
         glContext.bindBuffer(WebGLRenderingContext.ARRAY_BUFFER, vertexBuffer);
-        float[] vertices = new float[] { 0.0f, 1.0f, -5.0f, // first vertex
-                -1.0f, -1.0f, -5.0f, // second vertex
-                1.0f, -1.0f, -5.0f // third vertex
-        };
+        float[] vertices = new float[]{
+                0.0f,  1.0f,  -5.0f, // first vertex
+               -1.0f, -1.0f,  -5.0f, // second vertex
+                1.0f, -1.0f,  -5.0f  // third vertex
+};
+        Float32Array arr = Float32Array.create(vertices);
         glContext.bufferData(WebGLRenderingContext.ARRAY_BUFFER,
-                Float32Array.create(vertices),
+                arr,
                 WebGLRenderingContext.STATIC_DRAW);
     }
 
-    public abstract void drawScene();
+    protected abstract float[] getVerticies();
+    
+    public void render(){
+        this.initBuffers();
+        this.drawScene();
+    }
+    
+    protected abstract void drawScene();
 
     protected float[] createPerspectiveMatrix(int fieldOfViewVertical,
             float aspectRatio, float minimumClearance, float maximumClearance) {

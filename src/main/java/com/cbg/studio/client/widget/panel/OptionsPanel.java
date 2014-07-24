@@ -14,11 +14,15 @@ public class OptionsPanel extends FlexTable implements UiEventPanel,ClickHandler
     private UiCallbackHandler uiHandler;
     
     public OptionsPanel(UiCallbackHandler uiHandler) {
-        this.renderScene = new Button("Render Scene", this);
+        this.uiHandler = uiHandler;
+        
+        this.renderScene = new Button("<i class=\"fa fa-video-camera fa-3x\"></i>", this);
+        this.renderScene.setStyleName("options-button");
         
         this.setWidth("50px");
-        this.setHeight("100%");
         
+        this.setCellPadding(0);
+        this.setCellSpacing(0);
         this.setWidget(0,0,this.renderScene);
     }
 
