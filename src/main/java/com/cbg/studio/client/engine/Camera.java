@@ -12,28 +12,31 @@ import com.cbg.studio.client.engine.util.math.Vector3f;
  * 
  */
 public class Camera {
-    private Vector3f position;
+    private Vector3f lookFrom;
     private Vector3f lookAt;
 
-    private Vector3f getDirection() {
-        Vector3f direction = MathUtil.subtractVector(this.lookAt, this.position);
+    public FloatMatrix getPerspectiveMatrix() {
+        Vector3f direction = MathUtil
+                .subtractVector(this.lookAt, this.lookFrom);
 
-        float distance = direction.length();
+        FloatMatrix perspectiveMatrix = MathUtil.createPerspectiveMatrix(45,
+                1.0f, 0.1f, 1000);
+        FloatMatrix translationMatrix = MathUtil
+                .createTranslationMatrix(this.lookFrom);
+        FloatMatrix rotationMatrix = MathUtil.createRotationMatrix(direction);
+        FloatMatrix resultingMatrix = perspectiveMatrix.multiply(
+                translationMatrix).multiply(rotationMatrix);
         
-        /*FloatMatrix perspectiveMatrix = MathUtil.createPerspectiveMatrix(45, 1.0f, 0.1f, distance);
-        FloatMatrix translationMatrix = MathUtil.createTranslationMatrix(this.position);
-        FloatMatrix rotationMatrix = MathUtil.createRotationMatrix(angleX, angleY, angleZ);
-        FloatMatrix resultingMatrix = perspectiveMatrix.multiply(translationMatrix).multiply(rotationMatrix);*/
-        
-        return direction;
+        return resultingMatrix;
     }
 
-    public Vector3f getPosition() {
-        return position;
+    public Vector3f getLookFrom() {
+        return lookFrom;
     }
 
-    public void setPosition(Vector3f position) {
-        this.position = position;
+
+    public void setLookFrom(Vector3f lookFrom) {
+        this.lookFrom = lookFrom;
     }
 
     public Vector3f getLookAt() {

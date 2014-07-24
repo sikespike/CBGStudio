@@ -3,6 +3,7 @@
  */
 package com.cbg.studio.client.engine;
 
+import com.cbg.studio.client.engine.util.math.Vector3f;
 import com.cbg.studio.client.gwt.typedarrays.client.Float32Array;
 import com.cbg.studio.client.gwtgl.binding.WebGLBuffer;
 import com.cbg.studio.client.gwtgl.binding.WebGLProgram;
@@ -21,6 +22,8 @@ public abstract class AbstractGwtEngine extends FlowPanel {
     protected WebGLProgram shaderProgram;
     protected int vertexPositionAttribute;
     protected WebGLBuffer vertexBuffer;
+    
+    protected Camera camera;
 
     /**
      * Constructs a new instance of a GwtGL example with a launch button and a
@@ -38,10 +41,23 @@ public abstract class AbstractGwtEngine extends FlowPanel {
             Window.alert("Sorry, Your Browser doesn't support WebGL!");
         }
         glContext.viewport(0, 0, 640, 480);
+        
+        initCamera();
+        
         this.add(webGLCanvas);
         this.initialize();
     }
 
+    private void initCamera(){
+        this.camera = new Camera();
+        
+        Vector3f lookAt = new Vector3f(0.0f,0.0f,0.0f);
+        Vector3f lookFrom = new Vector3f(0.0f,0.0f,5.0f);
+        
+        this.camera.setLookAt(lookAt);
+        this.camera.setLookFrom(lookFrom);
+    }
+    
     public void initialize() {
         initShaders();
         glContext.clearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -111,25 +127,23 @@ public abstract class AbstractGwtEngine extends FlowPanel {
     }
     
     protected abstract void drawScene();
-
-    protected float[] createPerspectiveMatrix(int fieldOfViewVertical,
-            float aspectRatio, float minimumClearance, float maximumClearance) {
-        float top = minimumClearance
-                * (float) Math.tan(fieldOfViewVertical * Math.PI / 360.0);
+    
+    protected float[] createPerspectiveMatrix(int fieldOfViewVertical, float aspectRatio, float minimumClearance, float maximumClearance) {
+        float top    = minimumClearance * (float)Math.tan(fieldOfViewVertical * Math.PI / 360.0);
         float bottom = -top;
-        float left = bottom * aspectRatio;
-        float right = top * aspectRatio;
+        float left   = bottom * aspectRatio;
+        float right  = top * aspectRatio;
 
-        float X = 2 * minimumClearance / (right - left);
-        float Y = 2 * minimumClearance / (top - bottom);
-        float A = (right + left) / (right - left);
-        float B = (top + bottom) / (top - bottom);
-        float C = -(maximumClearance + minimumClearance)
-                / (maximumClearance - minimumClearance);
-        float D = -2 * maximumClearance * minimumClearance
-                / (maximumClearance - minimumClearance);
+        float X = 2*minimumClearance/(right-left);
+        float Y = 2*minimumClearance/(top-bottom);
+        float A = (right+left)/(right-left);
+        float B = (top+bottom)/(top-bottom);
+        float C = -(maximumClearance+minimumClearance)/(maximumClearance-minimumClearance);
+        float D = -2*maximumClearance*minimumClearance/(maximumClearance-minimumClearance);
 
-        return new float[] { X, 0.0f, A, 0.0f, 0.0f, Y, B, 0.0f, 0.0f, 0.0f, C,
-                -1.0f, 0.0f, 0.0f, D, 0.0f };
-    };
+        return new float[]{     X, 0.0f, A, 0.0f,
+                                                0.0f, Y, B, 0.0f,
+                                                0.0f, 0.0f, C, -1.0f,
+                                                0.0f, 0.0f, D, 0.0f};
+};
 }
