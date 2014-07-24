@@ -3,8 +3,7 @@ package com.cbg.studio.server.domain.geometry;
 import java.io.IOException;
 import java.io.Serializable;
 
-
-public class Material implements Serializable{
+public class Material implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Vector color;
@@ -25,13 +24,13 @@ public class Material implements Serializable{
 
         return b.toString();
     }
-    
+
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.color = (Vector)stream.readObject();
-        this.specLight = (Vector)stream.readObject();
-        this.ambientLight = (Vector)stream.readObject();
-        this.texture = (String)stream.readObject();
+        this.color = (Vector) stream.readObject();
+        this.specLight = (Vector) stream.readObject();
+        this.ambientLight = (Vector) stream.readObject();
+        this.texture = (String) stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
@@ -41,7 +40,7 @@ public class Material implements Serializable{
         stream.writeObject(this.ambientLight);
         stream.writeObject(this.texture);
     }
-    
+
     /**
      * @return the color
      */

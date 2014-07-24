@@ -5,10 +5,9 @@ package com.cbg.studio.client.menu.command;
 
 import com.cbg.studio.client.widget.screen.util.UiCallbackHandler;
 
-
 /**
  * @author Siebe
- *
+ * 
  */
 public class SaveFileCommand extends UiCommand {
 
@@ -20,11 +19,14 @@ public class SaveFileCommand extends UiCommand {
         super(uiHandler);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.google.gwt.core.client.Scheduler.ScheduledCommand#execute()
      */
+    @Override
     public void execute() {
-        
+
     }
 
 }

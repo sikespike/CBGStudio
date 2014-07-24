@@ -10,17 +10,19 @@ import com.cbg.studio.server.rpc.dto.CATModelDtoFactory;
 
 /**
  * @author Siebe
- *
+ * 
  */
 public class ModelRpcImpl extends AbstractStudioRpc implements ModelRpc {
     private static final long serialVersionUID = 1L;
-    
-    public CATModelDto getModel(){
-        CATModel model = (CATModel)this.getServletContext().getAttribute("model");
+
+    @Override
+    public CATModelDto getModel() {
+        CATModel model = (CATModel) this.getServletContext().getAttribute(
+                "model");
         CATModelDto dto = CATModelDtoFactory.createModelDto(model);
-        
+
         this.getServletContext().removeAttribute("model");
-        
+
         return dto;
     }
 }

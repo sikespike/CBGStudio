@@ -29,32 +29,27 @@ public class RigidBody implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("name", this.name)).append(",")
-                .append(StringUtil.jsonParamater("bone", this.bone.getName()))
-                .append(",").append("collisionGroupId:")
-                .append(this.collisionGroupId).append(",collsionMaskId:")
-                .append(this.collisionMaskId)
-                .append(StringUtil.jsonParamater("shape", this.shape))
-                .append(",")
-                .append(StringUtil.jsonParamater("size", this.size))
-                .append(",")
-                .append(StringUtil.jsonParamater("position", this.position))
-                .append(",")
-                .append(StringUtil.jsonParamater("rotation", this.rotation))
-                .append(",mass:").append(this.mass).append(",velocityAtt:")
-                .append(this.velocityAtt).append(",rotationAtt:")
-                .append(this.rotationAtt).append(",bounce:")
-                .append(this.bounce).append(",friction:").append(this.friction)
-                .append(",mode:").append(this.mode);
-        b.append("}");
-
-        return b.toString();
-    }*/
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * b.append("{"); b.append(StringUtil.jsonParamater("name",
+     * this.name)).append(",") .append(StringUtil.jsonParamater("bone",
+     * this.bone.getName())) .append(",").append("collisionGroupId:")
+     * .append(this.collisionGroupId).append(",collsionMaskId:")
+     * .append(this.collisionMaskId) .append(StringUtil.jsonParamater("shape",
+     * this.shape)) .append(",") .append(StringUtil.jsonParamater("size",
+     * this.size)) .append(",") .append(StringUtil.jsonParamater("position",
+     * this.position)) .append(",") .append(StringUtil.jsonParamater("rotation",
+     * this.rotation))
+     * .append(",mass:").append(this.mass).append(",velocityAtt:")
+     * .append(this.velocityAtt).append(",rotationAtt:")
+     * .append(this.rotationAtt).append(",bounce:")
+     * .append(this.bounce).append(",friction:").append(this.friction)
+     * .append(",mode:").append(this.mode); b.append("}");
+     * 
+     * return b.toString(); }
+     */
 
     /**
      * @return the name

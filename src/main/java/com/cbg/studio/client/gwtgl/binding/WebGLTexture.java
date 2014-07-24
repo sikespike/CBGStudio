@@ -20,11 +20,11 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public final class WebGLTexture extends JavaScriptObject {
 
-  /**
-   * Protected standard constructor as specified by
-   * {@link com.google.gwt.core.client.JavaScriptObject}.
-   */
-  protected WebGLTexture() {
-  }
+    /**
+     * Protected standard constructor as specified by
+     * {@link com.google.gwt.core.client.JavaScriptObject}.
+     */
+    protected WebGLTexture() {
+    }
 
 }

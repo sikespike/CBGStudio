@@ -22,7 +22,7 @@ public abstract class AbstractGwtEngine extends FlowPanel {
     protected WebGLProgram shaderProgram;
     protected int vertexPositionAttribute;
     protected WebGLBuffer vertexBuffer;
-    
+
     protected Camera camera;
 
     /**
@@ -41,23 +41,23 @@ public abstract class AbstractGwtEngine extends FlowPanel {
             Window.alert("Sorry, Your Browser doesn't support WebGL!");
         }
         glContext.viewport(0, 0, 640, 480);
-        
+
         initCamera();
-        
+
         this.add(webGLCanvas);
         this.initialize();
     }
 
-    private void initCamera(){
+    private void initCamera() {
         this.camera = new Camera();
-        
-        Vector3f lookAt = new Vector3f(0.0f,0.0f,0.0f);
-        Vector3f lookFrom = new Vector3f(0.0f,0.0f,5.0f);
-        
+
+        Vector3f lookAt = new Vector3f(0.0f, 0.0f, 0.0f);
+        Vector3f lookFrom = new Vector3f(0.0f, 0.0f, 5.0f);
+
         this.camera.setLookAt(lookAt);
         this.camera.setLookFrom(lookFrom);
     }
-    
+
     public void initialize() {
         initShaders();
         glContext.clearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -110,17 +110,16 @@ public abstract class AbstractGwtEngine extends FlowPanel {
         glContext.bindBuffer(WebGLRenderingContext.ARRAY_BUFFER, vertexBuffer);
         float[] vertices = this.getVerticies();
         Float32Array arr = Float32Array.create(vertices);
-        glContext.bufferData(WebGLRenderingContext.ARRAY_BUFFER,
-                arr,
+        glContext.bufferData(WebGLRenderingContext.ARRAY_BUFFER, arr,
                 WebGLRenderingContext.STATIC_DRAW);
     }
 
     protected abstract float[] getVerticies();
-    
-    public void render(){
+
+    public void render() {
         this.initBuffers();
         this.drawScene();
     }
-    
+
     protected abstract void drawScene();
 }

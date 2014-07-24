@@ -26,17 +26,17 @@ public class Joint implements Serializable {
 
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.name = (String)stream.readObject();
-        this.sourceRigidBodyName = (String)stream.readObject();
-        this.destRigidBodyName = (String)stream.readObject();
-        this.location = (Vector)stream.readObject();
-        this.rotation = (Vector)stream.readObject();
-        this.minLoc = (Vector)stream.readObject();
-        this.maxLoc = (Vector)stream.readObject();
-        this.minRot = (Vector)stream.readObject();
-        this.maxRot = (Vector)stream.readObject();
-        this.springConst = (Vector)stream.readObject();
-        this.springRotConst = (Vector)stream.readObject();
+        this.name = (String) stream.readObject();
+        this.sourceRigidBodyName = (String) stream.readObject();
+        this.destRigidBodyName = (String) stream.readObject();
+        this.location = (Vector) stream.readObject();
+        this.rotation = (Vector) stream.readObject();
+        this.minLoc = (Vector) stream.readObject();
+        this.maxLoc = (Vector) stream.readObject();
+        this.minRot = (Vector) stream.readObject();
+        this.maxRot = (Vector) stream.readObject();
+        this.springConst = (Vector) stream.readObject();
+        this.springRotConst = (Vector) stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)

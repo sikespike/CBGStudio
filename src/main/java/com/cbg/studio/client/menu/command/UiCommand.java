@@ -8,17 +8,17 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 
 /**
  * @author Siebe
- *
+ * 
  */
-public abstract class UiCommand implements ScheduledCommand{
-    
+public abstract class UiCommand implements ScheduledCommand {
+
     protected UiCallbackHandler uiHandler;
-    
-    public UiCommand(){
+
+    public UiCommand() {
         super();
     }
-    
-    public UiCommand(UiCallbackHandler uiHandler){
+
+    public UiCommand(UiCallbackHandler uiHandler) {
         this.uiHandler = uiHandler;
     }
 }

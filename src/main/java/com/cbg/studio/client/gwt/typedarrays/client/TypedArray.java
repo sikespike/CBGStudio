@@ -16,136 +16,149 @@ package com.cbg.studio.client.gwt.typedarrays.client;
 import com.google.gwt.core.client.GWT;
 
 /**
- * A TypedArray is an {@link ArrayBufferView} that reads and writes value of one specific type
- * to/from an {@link ArrayBuffer}.
+ * A TypedArray is an {@link ArrayBufferView} that reads and writes value of one
+ * specific type to/from an {@link ArrayBuffer}.
  * 
- * @param <T> the concrete subtype of the TypedArray itself. Used for methods using the type of the
- *          TypedArray as Parameter or return value.
+ * @param <T>
+ *            the concrete subtype of the TypedArray itself. Used for methods
+ *            using the type of the TypedArray as Parameter or return value.
  */
-public abstract class TypedArray<T extends TypedArray<T>> extends ArrayBufferView {
-
-  /**
-   * Defines at compile time if the browser possibly supports {@link TypedArray}.
-   */
-  private static class TypedArrayCompileTimeSupport {
+public abstract class TypedArray<T extends TypedArray<T>> extends
+        ArrayBufferView {
 
     /**
-     * Compile time check if {@link TypedArray} is possibly supported.
+     * Defines at compile time if the browser possibly supports
+     * {@link TypedArray}.
+     */
+    private static class TypedArrayCompileTimeSupport {
+
+        /**
+         * Compile time check if {@link TypedArray} is possibly supported.
+         * 
+         * @return true if might be supported, false otherwise.
+         */
+        boolean isSupported() {
+            return false;
+        }
+    }
+
+    /**
+     * Implementation of the TypedArrayCompileTimeSupport for all browsers that
+     * possibly support {@link TypedArray}s.
+     */
+    @SuppressWarnings("unused")
+    private static class TypedArrayCompileTimeSupportTrue extends
+            TypedArrayCompileTimeSupport {
+
+        /**
+         * @{inheritDoc
+         */
+        @Override
+        boolean isSupported() {
+            return true;
+        }
+    }
+
+    /**
+     * Instance of the {@link TypedArrayCompileTimeSupport} to check the
+     * availability of TypedArray at compile time.
+     */
+    private static TypedArrayCompileTimeSupport compileTimeSupport;
+
+    /**
+     * Checks if the Browser supports the {@link TypedArray}.
      * 
-     * @return true if might be supported, false otherwise.
+     * @return true, if TypedArray is supported, false otherwise.
      */
-    boolean isSupported() {
-      return false;
-    }
-  }
-
-  /**
-   * Implementation of the TypedArrayCompileTimeSupport for all browsers that possibly support
-   * {@link TypedArray}s.
-   */
-  @SuppressWarnings("unused")
-  private static class TypedArrayCompileTimeSupportTrue extends TypedArrayCompileTimeSupport {
+    public static boolean isSupported() {
+        if (compileTimeSupport == null) {
+            compileTimeSupport = GWT.create(TypedArrayCompileTimeSupport.class);
+        }
+        if (!compileTimeSupport.isSupported()) {
+            return false | isSupportedRuntime();
+        }
+        return isSupportedRuntime();
+    };
 
     /**
-     * @{inheritDoc
+     * Checks at runtime if the Browser supports the Typed Array API.
+     * 
+     * @return true, if TypedArray is supported, false otherwise.
      */
-    @Override
-    boolean isSupported() {
-      return true;
+    private static native boolean isSupportedRuntime() /*-{
+                                                       // TypedArray isn't available as type to JS. So we use annother elemental type for the check.
+                                                       return !!(window.ArrayBuffer);
+                                                       }-*/;
+
+    /**
+     * protected standard constructor as specified by
+     * {@link com.google.gwt.core.client.JavaScriptObject}.
+     */
+    protected TypedArray() {
+        super();
     }
-  }
 
-  /**
-   * Instance of the {@link TypedArrayCompileTimeSupport} to check the availability of TypedArray at
-   * compile time.
-   */
-  private static TypedArrayCompileTimeSupport compileTimeSupport;
+    /**
+     * Returns the number of values of the array type contained in the array.
+     * 
+     * @return the number of values of the array type contained in the array.
+     */
+    public final native int getLength() /*-{
+                                        return this.length;
+                                        }-*/;
 
-  /**
-   * Checks if the Browser supports the {@link TypedArray}.
-   * 
-   * @return true, if TypedArray is supported, false otherwise.
-   */
-  public static boolean isSupported() {
-    if (compileTimeSupport == null) {
-      compileTimeSupport = GWT.create(TypedArrayCompileTimeSupport.class);
-    }
-    if (!compileTimeSupport.isSupported()) {
-      return false | isSupportedRuntime();
-    }
-    return isSupportedRuntime();
-  };
+    /**
+     * Set multiple values, of the given array to this array.
+     * 
+     * @param array
+     *            the array to get the values from
+     */
+    public final native void set(T array)/*-{
+                                         this.set(array);
+                                         }-*/;
 
-  /**
-   * Checks at runtime if the Browser supports the Typed Array API.
-   * 
-   * @return true, if TypedArray is supported, false otherwise.
-   */
-  private static native boolean isSupportedRuntime() /*-{
-		// TypedArray isn't available as type to JS. So we use annother elemental type for the check.
-		return !!(window.ArrayBuffer);
-  }-*/;
+    /**
+     * Set multiple values, of the given array to this array starting at the
+     * given offset.
+     * 
+     * @param array
+     *            the array to get the values from
+     * @param offset
+     *            the offset to start setting the values
+     */
+    public final native void set(T array, int offset)/*-{
+                                                     this.set(array, offset);
+                                                     }-*/;
 
-  /**
-   * protected standard constructor as specified by
-   * {@link com.google.gwt.core.client.JavaScriptObject}.
-   */
-  protected TypedArray() {
-    super();
-  }
+    /**
+     * Returns a new {@link TypedArray} with the same underlying
+     * {@link ArrayBuffer}.
+     * 
+     * @param begin
+     *            the beginning offset of the new {@link TypedArray} from the
+     *            start of this {@link TypedArray}. If the value is negative,
+     *            it's the offset from the end of this {@link TypedArray}.
+     * @return the new Array
+     */
+    public final native T subarray(int begin)/*-{
+                                             return this.subarray(begin);
+                                             }-*/;
 
-  /**
-   * Returns the number of values of the array type contained in the array.
-   * 
-   * @return the number of values of the array type contained in the array.
-   */
-  public final native int getLength() /*-{
-		return this.length;
-  }-*/;
-
-  /**
-   * Set multiple values, of the given array to this array.
-   * 
-   * @param array the array to get the values from
-   */
-  public final native void set(T array)/*-{
-		this.set(array);
-  }-*/;
-
-  /**
-   * Set multiple values, of the given array to this array starting at the given offset.
-   * 
-   * @param array the array to get the values from
-   * @param offset the offset to start setting the values
-   */
-  public final native void set(T array, int offset)/*-{
-		this.set(array, offset);
-  }-*/;
-
-  /**
-   * Returns a new {@link TypedArray} with the same underlying {@link ArrayBuffer}.
-   * 
-   * @param begin the beginning offset of the new {@link TypedArray} from the start of this
-   *          {@link TypedArray}. If the value is negative, it's the offset from the end of this
-   *          {@link TypedArray}.
-   * @return the new Array
-   */
-  public final native T subarray(int begin)/*-{
-		return this.subarray(begin);
-  }-*/;
-
-  /**
-   * Returns a new {@link TypedArray} with the same underlying {@link ArrayBuffer}.
-   * 
-   * @param begin the beginning offset of the new {@link TypedArray} from the start of this
-   *          {@link TypedArray}. If the value is negative, it's the offset from the end of this
-   *          {@link TypedArray}.
-   * @param end the end offset (exclusive). If the value is negative, it's the offset from the end
-   *          of this {@link TypedArray}.
-   * @return the new Array
-   */
-  public final native T subarray(int begin, int end)/*-{
-		return this.subarray(begin, end);
-  }-*/;
+    /**
+     * Returns a new {@link TypedArray} with the same underlying
+     * {@link ArrayBuffer}.
+     * 
+     * @param begin
+     *            the beginning offset of the new {@link TypedArray} from the
+     *            start of this {@link TypedArray}. If the value is negative,
+     *            it's the offset from the end of this {@link TypedArray}.
+     * @param end
+     *            the end offset (exclusive). If the value is negative, it's the
+     *            offset from the end of this {@link TypedArray}.
+     * @return the new Array
+     */
+    public final native T subarray(int begin, int end)/*-{
+                                                      return this.subarray(begin, end);
+                                                      }-*/;
 
 }

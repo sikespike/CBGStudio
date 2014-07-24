@@ -12,7 +12,6 @@ import com.cbg.studio.client.data.geometry.Vertex;
 import com.cbg.studio.client.engine.util.CubeFactory;
 import com.cbg.studio.client.engine.util.Mesh;
 import com.cbg.studio.client.engine.util.math.FloatMatrix;
-import com.cbg.studio.client.engine.util.math.Vector3f;
 import com.cbg.studio.client.gwtgl.binding.WebGLRenderingContext;
 import com.cbg.studio.client.gwtgl.binding.WebGLUniformLocation;
 
@@ -38,9 +37,9 @@ public class CBGwtEngine extends AbstractGwtEngine {
     @Override
     protected float[] getVerticies() {
         Mesh cube = CubeFactory.createNewInstance(1.0f);
-        
+
         return cube.getVertices();
-        //return this.polygonsToFloatArray(this.model.getPolygons());
+        // return this.polygonsToFloatArray(this.model.getPolygons());
     }
 
     private float[] polygonsToFloatArray(List<Triangle> polygons) {
@@ -80,8 +79,9 @@ public class CBGwtEngine extends AbstractGwtEngine {
         WebGLUniformLocation uniformLocation = glContext.getUniformLocation(
                 shaderProgram, "perspectiveMatrix");
         FloatMatrix pMatrix = this.camera.getPerspectiveMatrix();
-        
-        glContext.uniformMatrix4fv(uniformLocation, false, pMatrix.getFlatData());
+
+        glContext.uniformMatrix4fv(uniformLocation, false,
+                pMatrix.getFlatData());
         glContext.vertexAttribPointer(vertexPositionAttribute, 3,
                 WebGLRenderingContext.FLOAT, false, 0, 0);
         glContext.drawArrays(WebGLRenderingContext.TRIANGLES, 0, 36);

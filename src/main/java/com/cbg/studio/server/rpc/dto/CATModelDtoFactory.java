@@ -307,8 +307,7 @@ public class CATModelDtoFactory {
             m.setTargetBone(bones.get(md.getTargetBoneName()));
 
             List<Bone> cBones = new ArrayList<Bone>();
-            for (String bd : md
-                    .getChildBoneNames()) {
+            for (String bd : md.getChildBoneNames()) {
                 cBones.add(bones.get(bd));
             }
 
@@ -331,8 +330,7 @@ public class CATModelDtoFactory {
         DisplayBoneGroupList groupList = createDisplayBoneGroupList(domain);
 
         for (String key : groupList.getKeys()) {
-            List<String> gList = domain
-                    .getGroup(key);
+            List<String> gList = domain.getGroup(key);
 
             List<Bone> groupBones = new ArrayList<Bone>();
 

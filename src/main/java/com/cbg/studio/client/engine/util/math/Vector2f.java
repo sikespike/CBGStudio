@@ -133,17 +133,17 @@ public class Vector2f implements Vectorf, Serializable {
     public float[] toArray() {
         return new float[] { this.u, this.v };
     }
-    
+
     @Override
-    public List<Float> toList(){
+    public List<Float> toList() {
         List<Float> list = new ArrayList<Float>();
-        
+
         float[] coords = this.toArray();
-        
-        for(int x=0;x<coords.length;x++){
+
+        for (int x = 0; x < coords.length; x++) {
             list.add(new Float(coords[x]));
         }
-        
+
         return list;
     }
 }

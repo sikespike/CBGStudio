@@ -16,52 +16,56 @@ package com.cbg.studio.client.gwt.typedarrays.client;
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * The ArrayBuffer is a buffer for the data of {@link TypedArray}s. It's the raw untyped store for
- * the data represented by the {@link TypedArray}s using this ArrayBuffer.
+ * The ArrayBuffer is a buffer for the data of {@link TypedArray}s. It's the raw
+ * untyped store for the data represented by the {@link TypedArray}s using this
+ * ArrayBuffer.
  * 
  */
 public class ArrayBuffer extends JavaScriptObject {
 
-  /**
-   * Constructs a new ArrayBuffer instance. The newly created ArrayBuffer has the given length in
-   * bytes. The ArrayBuffer is initialized with 0 values.
-   * 
-   * @param length the byte length of the newly created ArrayBuffer
-   * @return the created ArrayBuffer or null if it isn't supported by the browser
-   */
-  public static ArrayBuffer create(int length) {
-    if (!TypedArray.isSupported()) {
-      return null;
+    /**
+     * Constructs a new ArrayBuffer instance. The newly created ArrayBuffer has
+     * the given length in bytes. The ArrayBuffer is initialized with 0 values.
+     * 
+     * @param length
+     *            the byte length of the newly created ArrayBuffer
+     * @return the created ArrayBuffer or null if it isn't supported by the
+     *         browser
+     */
+    public static ArrayBuffer create(int length) {
+        if (!TypedArray.isSupported()) {
+            return null;
+        }
+        return createImpl(length);
     }
-    return createImpl(length);
-  }
 
-  /**
-   * Constructs a new ArrayBuffer instance. The newly created ArrayBuffer has the given length in
-   * bytes. The ArrayBuffer is initialized with 0 values.
-   * 
-   * @param length the byte length of the newly created ArrayBuffer
-   * @return the created ArrayBuffer
-   */
-  private static native ArrayBuffer createImpl(int length) /*-{
-		return new ArrayBuffer(length);
-  }-*/;
+    /**
+     * Constructs a new ArrayBuffer instance. The newly created ArrayBuffer has
+     * the given length in bytes. The ArrayBuffer is initialized with 0 values.
+     * 
+     * @param length
+     *            the byte length of the newly created ArrayBuffer
+     * @return the created ArrayBuffer
+     */
+    private static native ArrayBuffer createImpl(int length) /*-{
+                                                             return new ArrayBuffer(length);
+                                                             }-*/;
 
-  /**
-   * protected standard constructor as specified by
-   * {@link com.google.gwt.core.client.JavaScriptObject}.
-   */
-  protected ArrayBuffer() {
-    super();
-  }
+    /**
+     * protected standard constructor as specified by
+     * {@link com.google.gwt.core.client.JavaScriptObject}.
+     */
+    protected ArrayBuffer() {
+        super();
+    }
 
-  /**
-   * Returns the non changeable length of the ArrayBuffer in bytes.
-   * 
-   * @return the non changeable length of the ArrayBuffer in bytes.
-   */
-  public final native int getByteLength() /*-{
-		return this.byteLength;
-  }-*/;
+    /**
+     * Returns the non changeable length of the ArrayBuffer in bytes.
+     * 
+     * @return the non changeable length of the ArrayBuffer in bytes.
+     */
+    public final native int getByteLength() /*-{
+                                            return this.byteLength;
+                                            }-*/;
 
 }

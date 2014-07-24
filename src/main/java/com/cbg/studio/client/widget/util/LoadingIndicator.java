@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 public class LoadingIndicator extends DialogBox {
     public LoadingIndicator() {
         super(true, true);
-        
+
         this.getElement().setId("global-loading-widget");
 
         this.setHTML("<i class=\"fa fa-spinner fa-spin\"></i>");

@@ -25,17 +25,18 @@ import java.util.List;
  * @author Sönke Sothmann
  * 
  */
-public class Vector3f implements Vectorf,Serializable {
+public class Vector3f implements Vectorf, Serializable {
     private static final long serialVersionUID = 1L;
     private float x;
     private float y;
     private float z;
 
-    public Vector3f(){
+    public Vector3f() {
         this.x = 0.0f;
         this.y = 0.0f;
         this.z = 0.0f;
     }
+
     /**
      * Constructs a new instance of the Vector3f with the given coordinates to
      * set.
@@ -50,6 +51,7 @@ public class Vector3f implements Vectorf,Serializable {
         this.y = y;
         this.z = z;
     }
+
     /**
      * Constructs a new instance of the Vector3f with the given coordinates to
      * set.
@@ -64,7 +66,7 @@ public class Vector3f implements Vectorf,Serializable {
         this.y = vector[1];
         this.z = vector[2];
     }
-    
+
     /**
      * Returns the x coordinate.
      * 
@@ -163,17 +165,17 @@ public class Vector3f implements Vectorf,Serializable {
     public float[] toArray() {
         return new float[] { this.x, this.y, this.z };
     }
-    
+
     @Override
-    public List<Float> toList(){
+    public List<Float> toList() {
         List<Float> list = new ArrayList<Float>();
-        
+
         float[] coords = this.toArray();
-        
-        for(int x=0;x<coords.length;x++){
+
+        for (int x = 0; x < coords.length; x++) {
             list.add(new Float(coords[x]));
         }
-        
+
         return list;
     }
 }

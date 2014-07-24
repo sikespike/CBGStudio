@@ -30,40 +30,27 @@ public class Joint implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("name", this.name))
-                .append(",")
-                .append(StringUtil.jsonParamater("sourceRigidBody",
-                        this.sourceRigidBody))
-                .append(",")
-                .append(StringUtil.jsonParamater("destRigidBody",
-                        this.sourceRigidBody))
-                .append(",")
-                .append(StringUtil.jsonParamater("location", this.location))
-                .append(",")
-                .append(StringUtil.jsonParamater("rotation", this.rotation))
-                .append(",")
-                .append(StringUtil.jsonParamater("minLoc", this.minLoc))
-                .append(",")
-                .append(StringUtil.jsonParamater("maxLoc", this.maxLoc))
-                .append(",")
-                .append(StringUtil.jsonParamater("minRot", this.minRot))
-                .append(",")
-                .append(StringUtil.jsonParamater("maxRot", this.maxRot))
-                .append(",")
-                .append(StringUtil.jsonParamater("springConst",
-                        this.springConst))
-                .append(",")
-                .append(StringUtil.jsonParamater("springRotConst",
-                        this.springRotConst));
-        b.append("}");
-
-        return b.toString();
-    }*/
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * b.append("{"); b.append(StringUtil.jsonParamater("name", this.name))
+     * .append(",") .append(StringUtil.jsonParamater("sourceRigidBody",
+     * this.sourceRigidBody)) .append(",")
+     * .append(StringUtil.jsonParamater("destRigidBody", this.sourceRigidBody))
+     * .append(",") .append(StringUtil.jsonParamater("location", this.location))
+     * .append(",") .append(StringUtil.jsonParamater("rotation", this.rotation))
+     * .append(",") .append(StringUtil.jsonParamater("minLoc", this.minLoc))
+     * .append(",") .append(StringUtil.jsonParamater("maxLoc", this.maxLoc))
+     * .append(",") .append(StringUtil.jsonParamater("minRot", this.minRot))
+     * .append(",") .append(StringUtil.jsonParamater("maxRot", this.maxRot))
+     * .append(",") .append(StringUtil.jsonParamater("springConst",
+     * this.springConst)) .append(",")
+     * .append(StringUtil.jsonParamater("springRotConst", this.springRotConst));
+     * b.append("}");
+     * 
+     * return b.toString(); }
+     */
 
     /**
      * @return the name

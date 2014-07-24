@@ -11,7 +11,7 @@ import java.util.List;
  * @author Siebe
  * 
  */
-public class Motion implements Serializable{
+public class Motion implements Serializable {
     private static final long serialVersionUID = 1L;
     private String boneName;
     private String targetBoneName;
@@ -23,12 +23,12 @@ public class Motion implements Serializable{
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.boneName = (String)stream.readObject();
-        this.targetBoneName = (String)stream.readObject();
+        this.boneName = (String) stream.readObject();
+        this.targetBoneName = (String) stream.readObject();
         this.links = stream.readInt();
         this.iteration = stream.readInt();
         this.maxAngle = stream.readFloat();
-        this.childBoneNames = (List<String>)stream.readObject();
+        this.childBoneNames = (List<String>) stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
@@ -40,7 +40,7 @@ public class Motion implements Serializable{
         stream.writeFloat(this.maxAngle);
         stream.writeObject(this.childBoneNames);
     }
-    
+
     public String getBoneName() {
         return boneName;
     }
@@ -109,6 +109,5 @@ public class Motion implements Serializable{
     public void setMaxAngle(float maxAngle) {
         this.maxAngle = maxAngle;
     }
-    
-    
+
 }

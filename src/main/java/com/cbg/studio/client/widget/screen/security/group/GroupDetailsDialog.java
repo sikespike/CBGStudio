@@ -15,14 +15,14 @@ import com.google.gwt.user.client.ui.TextBox;
  * @author vladimir.kavoun
  * 
  */
-public class GroupDetailsDialog extends AbstractAction{
+public class GroupDetailsDialog extends AbstractAction {
     private static final long serialVersionUID = 1L;
     private Long groupId;
     private GroupDetailsDto dto;
-    
+
     private TextBox groupName;
     private SecurityResourcesTree secResources;
-    
+
     public GroupDetailsDialog(Long groupId) {
         super();
         this.groupId = groupId;
@@ -30,25 +30,27 @@ public class GroupDetailsDialog extends AbstractAction{
         loadGroup();
     }
 
-    private void loadUi(){
-        
+    private void loadUi() {
+
     }
-    
-    private void loadGroup(){
-        
+
+    private void loadGroup() {
+
     }
-    
-    private void setData(){
-        
-        
-        
+
+    private void setData() {
+
     }
-    
-    /* (non-Javadoc)
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
-        
+
     }
 
     /*
@@ -58,20 +60,21 @@ public class GroupDetailsDialog extends AbstractAction{
      * com.vfmlSupportApp.client.app.widget.dialog.AbstractAppDialog#addBody()
      */
     protected void addBody() {
-        /*int row = 0;
-        this.body.setHTML(row, 0, "Group name");
-
-        this.groupName = createTextBox("group-name");
-
-        this.body.setWidget(row, 1, groupName);
-
-        row++;
-
-        this.body.setHTML(row, 0, "Security Resources");
-        
-        this.secResources = new SecurityResourcesTree();
-        
-        this.body.setWidget(row, 1, secResources);*/
+        /*
+         * int row = 0; this.body.setHTML(row, 0, "Group name");
+         * 
+         * this.groupName = createTextBox("group-name");
+         * 
+         * this.body.setWidget(row, 1, groupName);
+         * 
+         * row++;
+         * 
+         * this.body.setHTML(row, 0, "Security Resources");
+         * 
+         * this.secResources = new SecurityResourcesTree();
+         * 
+         * this.body.setWidget(row, 1, secResources);
+         */
     }
 
     private TextBox createTextBox(String id) {
@@ -87,7 +90,7 @@ public class GroupDetailsDialog extends AbstractAction{
      * @see com.vfmlSupportApp.client.app.widget.dialog.AbstractAppDialog#onOk()
      */
     protected void onOk() {
-        //uiHandler.onUiAction(UiAction.REFRESH);
+        // uiHandler.onUiAction(UiAction.REFRESH);
     }
 
     /*
@@ -97,7 +100,7 @@ public class GroupDetailsDialog extends AbstractAction{
      * com.vfmlSupportApp.client.app.widget.dialog.AbstractAppDialog#onCancel()
      */
     protected void onCancel() {
-        //do nothing;
+        // do nothing;
     }
 
 }

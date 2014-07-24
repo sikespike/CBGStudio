@@ -26,14 +26,13 @@ public class Camera {
         FloatMatrix rotationMatrix = MathUtil.createRotationMatrix(direction);
         FloatMatrix resultingMatrix = perspectiveMatrix.multiply(
                 translationMatrix).multiply(rotationMatrix);
-        
+
         return resultingMatrix;
     }
 
     public Vector3f getLookFrom() {
         return lookFrom;
     }
-
 
     public void setLookFrom(Vector3f lookFrom) {
         this.lookFrom = lookFrom;

@@ -21,18 +21,16 @@ public class MorphData implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * b.append("{"); b.append("index:").append(this.index).append(",")
+     * .append(StringUtil.jsonParamater("offset", this.offset)); b.append("}");
+     * 
+     * return b.toString(); }
+     */
 
-        b.append("{");
-        b.append("index:").append(this.index).append(",")
-                .append(StringUtil.jsonParamater("offset", this.offset));
-        b.append("}");
-
-        return b.toString();
-    }*/
-    
     /**
      * @return the index
      */

@@ -30,27 +30,24 @@ public class Vertex implements Serializable {
         this.uv = new Vector2f();
     }
 
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-
-        b.append("{");
-
-        b.append(StringUtil.jsonParamater("position", this.position))
-                .append(",")
-                .append(StringUtil.jsonParamater("normal", this.normal))
-                .append(",")
-                .append(StringUtil.jsonParamater("uv", this.uv))
-                .append(",")
-                .append(StringUtil.jsonParamater("bone0", this.bone0.getName()))
-                .append(",")
-                .append(StringUtil.jsonParamater("bone1", this.bone1.getName()))
-                .append(",").append(",bone0Weight:").append(this.bone0Weight);
-
-        b.append("}");
-
-        return b.toString();
-    }*/
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * b.append("{");
+     * 
+     * b.append(StringUtil.jsonParamater("position", this.position))
+     * .append(",") .append(StringUtil.jsonParamater("normal", this.normal))
+     * .append(",") .append(StringUtil.jsonParamater("uv", this.uv))
+     * .append(",") .append(StringUtil.jsonParamater("bone0",
+     * this.bone0.getName())) .append(",")
+     * .append(StringUtil.jsonParamater("bone1", this.bone1.getName()))
+     * .append(",").append(",bone0Weight:").append(this.bone0Weight);
+     * 
+     * b.append("}");
+     * 
+     * return b.toString(); }
+     */
 
     /**
      * @return the bone0

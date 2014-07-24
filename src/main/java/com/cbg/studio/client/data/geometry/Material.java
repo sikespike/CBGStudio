@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 import com.cbg.studio.client.engine.util.math.Vector3f;
 
-
-public class Material implements Serializable{
+public class Material implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Vector3f color;
@@ -14,19 +13,18 @@ public class Material implements Serializable{
 
     private String texture;
 
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * b.append("{color:"); b.append(color.toString()).append(",specLight:")
+     * .append(specLight.toString()).append(",ambientLight:")
+     * .append(ambientLight.toString()).append(",texture:") .append("\"" +
+     * texture + "\"").append("}");
+     * 
+     * return b.toString(); }
+     */
 
-        b.append("{color:");
-        b.append(color.toString()).append(",specLight:")
-                .append(specLight.toString()).append(",ambientLight:")
-                .append(ambientLight.toString()).append(",texture:")
-                .append("\"" + texture + "\"").append("}");
-
-        return b.toString();
-    }*/
-    
     /**
      * @return the color
      */

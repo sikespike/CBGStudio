@@ -16,17 +16,17 @@ package com.cbg.studio.client.gwtgl.binding;
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * The WebGLBuffer represents a buffer on the graphics card that contains the data for rendering
- * (e.g. vertex and color data).
+ * The WebGLBuffer represents a buffer on the graphics card that contains the
+ * data for rendering (e.g. vertex and color data).
  * 
  */
 public final class WebGLBuffer extends JavaScriptObject {
 
-  /**
-   * protected standard constructor as specified by
-   * {@link com.google.gwt.core.client.JavaScriptObject}.
-   */
-  protected WebGLBuffer() {
-  }
+    /**
+     * protected standard constructor as specified by
+     * {@link com.google.gwt.core.client.JavaScriptObject}.
+     */
+    protected WebGLBuffer() {
+    }
 
 }

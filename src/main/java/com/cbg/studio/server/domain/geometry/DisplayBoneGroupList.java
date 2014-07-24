@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Xif
  * 
  */
-public class DisplayBoneGroupList implements Serializable{
+public class DisplayBoneGroupList implements Serializable {
     private static final long serialVersionUID = 1L;
     private List<String> keys;
     private Map<String, List<String>> groups;
@@ -27,12 +27,12 @@ public class DisplayBoneGroupList implements Serializable{
         this.keys = new ArrayList<String>();
         this.groups = new HashMap<String, List<String>>();
     }
-    
+
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.keys = (List<String>)stream.readObject();
-        this.groups = (Map<String, List<String>>)stream.readObject();
+        this.keys = (List<String>) stream.readObject();
+        this.groups = (Map<String, List<String>>) stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
@@ -40,7 +40,7 @@ public class DisplayBoneGroupList implements Serializable{
         stream.writeObject(this.keys);
         stream.writeObject(this.groups);
     }
-    
+
     public void put(String key, List<String> group) {
         if (!this.groups.containsKey(key)) {
             this.addKey(key);

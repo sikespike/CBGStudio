@@ -5,6 +5,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("modelRpc")
-public interface ModelRpc extends RemoteService{
+public interface ModelRpc extends RemoteService {
     public CATModelDto getModel();
 }

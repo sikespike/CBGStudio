@@ -11,10 +11,10 @@ public class UiActionEvent {
     private Object source;
     private UiAction action;
 
-    public UiActionEvent(UiAction action){
+    public UiActionEvent(UiAction action) {
         this.action = action;
     }
-    
+
     public UiActionEvent(Object source, UiAction action) {
         this.source = source;
         this.action = action;

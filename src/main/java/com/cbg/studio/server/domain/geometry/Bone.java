@@ -21,21 +21,21 @@ public class Bone implements Serializable {
     private String targetName;
 
     private Vector position;
-    
+
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.name = (String)stream.readObject();
-        this.parentName = (String)stream.readObject();
-        this.childName = (String)stream.readObject();
-        this.targetName = (String)stream.readObject();
+        this.name = (String) stream.readObject();
+        this.parentName = (String) stream.readObject();
+        this.childName = (String) stream.readObject();
+        this.targetName = (String) stream.readObject();
         this.type = stream.readInt();
-        this.position = (Vector)stream.readObject();
+        this.position = (Vector) stream.readObject();
 
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
             throws IOException {
-        
+
         stream.writeObject(this.name);
         stream.writeObject(this.parentName);
         stream.writeObject(this.childName);
@@ -43,6 +43,7 @@ public class Bone implements Serializable {
         stream.writeInt(this.type);
         stream.writeObject(this.position);
     }
+
     /**
      * @return the name
      */
@@ -96,7 +97,8 @@ public class Bone implements Serializable {
     }
 
     /**
-     * @param parentName the parentName to set
+     * @param parentName
+     *            the parentName to set
      */
     public void setParentName(String parentName) {
         this.parentName = parentName;
@@ -110,7 +112,8 @@ public class Bone implements Serializable {
     }
 
     /**
-     * @param childName the childName to set
+     * @param childName
+     *            the childName to set
      */
     public void setChildName(String childName) {
         this.childName = childName;
@@ -124,7 +127,8 @@ public class Bone implements Serializable {
     }
 
     /**
-     * @param targetName the targetName to set
+     * @param targetName
+     *            the targetName to set
      */
     public void setTargetName(String targetName) {
         this.targetName = targetName;

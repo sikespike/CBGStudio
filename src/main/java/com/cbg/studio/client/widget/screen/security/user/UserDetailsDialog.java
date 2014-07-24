@@ -16,10 +16,10 @@ import com.google.gwt.user.client.ui.TextBox;
  * @author vladimir.kavoun
  * 
  */
-public class UserDetailsDialog extends AbstractAppDialog{
+public class UserDetailsDialog extends AbstractAppDialog {
     private Long userId;
     private UserDetailsDto dto;
-    
+
     private TextBox userName;
     private PasswordTextBox password;
     private PasswordTextBox newPassword;
@@ -31,29 +31,27 @@ public class UserDetailsDialog extends AbstractAppDialog{
     private CheckBox lockedOut;
 
     private boolean groupsLoaded = false;
-    
+
     public UserDetailsDialog(Long userId) {
         super();
-        
+
         this.userId = userId;
         loadUi();
         loadUser();
     }
 
-    private void loadUi(){
-        
+    private void loadUi() {
+
     }
-    
-    private void loadUser(){
-        
+
+    private void loadUser() {
+
     }
-    
-    private void setData(){
-        
-        
-        
+
+    private void setData() {
+
     }
-    
+
     /*
      * (non-Javadoc)
      * 
@@ -86,7 +84,7 @@ public class UserDetailsDialog extends AbstractAppDialog{
         this.body.setWidget(row, 1, newPassword);
 
         row++;
-        
+
         this.body.setHTML(row, 0, "Group");
 
         this.groups = new AppListBox("group");
@@ -162,7 +160,7 @@ public class UserDetailsDialog extends AbstractAppDialog{
      */
     @Override
     protected void onOk() {
-        uiHandler.onUiAction(new UiActionEvent(this,UiAction.REFRESH));
+        uiHandler.onUiAction(new UiActionEvent(this, UiAction.REFRESH));
     }
 
     /*
@@ -173,7 +171,7 @@ public class UserDetailsDialog extends AbstractAppDialog{
      */
     @Override
     protected void onCancel() {
-        //do nothing;
+        // do nothing;
     }
 
 }

@@ -19,12 +19,12 @@ import com.google.gwt.user.client.ui.Widget;
 public class CollapsedOptionsPanel extends FlexTable {
     private UiCallbackHandler uiHandler;
 
-    private LinkedHashMap<Widget,UiCollapsibleEventPanel> collapsedPanels;
+    private LinkedHashMap<Widget, UiCollapsibleEventPanel> collapsedPanels;
 
     public CollapsedOptionsPanel(UiCallbackHandler uiHandler) {
         this.uiHandler = uiHandler;
 
-        collapsedPanels = new LinkedHashMap<Widget,UiCollapsibleEventPanel>();
+        collapsedPanels = new LinkedHashMap<Widget, UiCollapsibleEventPanel>();
 
         this.setHeight("50px");
         this.setWidth("100%");
@@ -32,14 +32,14 @@ public class CollapsedOptionsPanel extends FlexTable {
 
     public void addCollapsedPanel(UiCollapsibleEventPanel panel) {
         Widget w = createBarWidget();
-        collapsedPanels.put(w,panel);
+        collapsedPanels.put(w, panel);
         this.setWidget(0, collapsedPanels.keySet().size(), w);
     }
 
-    private Widget createBarWidget(){
-        Button w = new Button(" ", new ClickHandler(){
+    private Widget createBarWidget() {
+        Button w = new Button(" ", new ClickHandler() {
             @Override
-            public void onClick(ClickEvent e){
+            public void onClick(ClickEvent e) {
                 collapsedPanels.get(e.getSource()).openPanel();
             }
         });

@@ -23,30 +23,25 @@ public class Bone implements Serializable {
 
     private Vector3f position;
 
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * String parentName = this.parent != null ? this.parent.getName() : "null";
+     * String childName = this.parent != null ? this.parent.getName() : "null";
+     * String targetName = this.parent != null ? this.parent.getName() : "null";
+     * 
+     * b.append("{"); b.append(StringUtil.jsonParamater("name",
+     * this.name)).append(",") .append(StringUtil.jsonParamater("parentBone",
+     * parentName)) .append(",") .append(StringUtil.jsonParamater("childBone",
+     * childName)) .append(",type:").append(this.type).append(",")
+     * .append(StringUtil.jsonParamater("targetBone", targetName)) .append(",")
+     * .append(StringUtil.jsonParamater("position", this.position));
+     * b.append("}");
+     * 
+     * return b.toString(); }
+     */
 
-        String parentName = this.parent != null ? this.parent.getName()
-                : "null";
-        String childName = this.parent != null ? this.parent.getName() : "null";
-        String targetName = this.parent != null ? this.parent.getName()
-                : "null";
-
-        b.append("{");
-        b.append(StringUtil.jsonParamater("name", this.name)).append(",")
-                .append(StringUtil.jsonParamater("parentBone", parentName))
-                .append(",")
-                .append(StringUtil.jsonParamater("childBone", childName))
-                .append(",type:").append(this.type).append(",")
-                .append(StringUtil.jsonParamater("targetBone", targetName))
-                .append(",")
-                .append(StringUtil.jsonParamater("position", this.position));
-        b.append("}");
-
-        return b.toString();
-    }*/
-    
     /**
      * @return the name
      */

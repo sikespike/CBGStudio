@@ -3,6 +3,7 @@
  */
 package com.cbg.studio.client.widget.panel;
 
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.DOM;
@@ -21,11 +22,10 @@ public abstract class AbstractStyledFormPanel extends FormPanel {
     private int buttonCols = 0;
 
     protected FlowPanel wrapper;
-    
+
     protected FlexTable body;
     protected FlexTable buttons;
 
-    
     /**
      * 
      */
@@ -69,7 +69,7 @@ public abstract class AbstractStyledFormPanel extends FormPanel {
 
     private void init() {
         this.wrapper = new FlowPanel();
-        
+
         this.body = new FlexTable();
 
         this.buttons = new FlexTable();
@@ -85,7 +85,7 @@ public abstract class AbstractStyledFormPanel extends FormPanel {
     @Override
     public void add(Widget child) {
         this.body.setWidget(this.fieldRows, 1, child);
-        Element tr = DOM.getParent(DOM.getParent(child.getElement()));
+        Element tr = child.getElement().getParentElement().getParentElement();
         tr.getStyle().setWidth(100, Style.Unit.EX);
         Element sibling = DOM.getChild(tr, 0);
         sibling.addClassName("display-none");
@@ -97,17 +97,17 @@ public abstract class AbstractStyledFormPanel extends FormPanel {
         this.buttonCols++;
     }
 
-    public void addLabel(int row, String text){
+    public void addLabel(int row, String text) {
         this.body.setHTML(row, 0, text);
         this.showLabel(row);
     }
-    
-    private void showLabel(int row){
-        Element tBody = DOM.getChild(this.body.getElement(), 1);
+
+    private void showLabel(int row) {
+        Element tBody = DOM.getChild((Element)this.body.getElement(), 1);
         Element tr = DOM.getChild(tBody, row);
         Element sibling = DOM.getChild(tr, 0);
         sibling.replaceClassName("display-none", "display-show");
     }
-    
+
     protected abstract void addStyles();
 }

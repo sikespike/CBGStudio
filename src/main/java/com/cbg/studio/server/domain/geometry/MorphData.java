@@ -18,7 +18,7 @@ public class MorphData implements Serializable {
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
         this.index = stream.readInt();
-        this.offset = (Vector)stream.readObject();
+        this.offset = (Vector) stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
@@ -26,7 +26,7 @@ public class MorphData implements Serializable {
         stream.writeInt(this.index);
         stream.writeObject(this.offset);
     }
-    
+
     /**
      * @return the index
      */

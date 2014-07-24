@@ -70,28 +70,29 @@ public class MathUtil {
     public static FloatMatrix4x4 createRotationMatrix(Vector3f vector) {
         Vector3f unitVector = (Vector3f) vector.toUnitVector();
 
-        Vector3f xv = new Vector3f(unitVector.getX(),0.0f,0.0f);
-        Vector3f yv = new Vector3f(0.0f,unitVector.getY(),0.0f);
-        Vector3f zv = new Vector3f(0.0f,0.0f,unitVector.getZ());
-        
-        float yzv = yv.length()*zv.length();
-        float x = (float)Math.acos(dotProduct(yv,zv)/yzv);
-        
-        float xzv = xv.length()*zv.length();
-        float y = (float)Math.acos(dotProduct(xv,zv)/xzv);
-        
-        float xyv = xv.length()*yv.length();
-        float z = (float)Math.acos(dotProduct(xv,yv)/xyv);
-        
-        return createRotationMatrix(x,y,z);
+        Vector3f xv = new Vector3f(unitVector.getX(), 0.0f, 0.0f);
+        Vector3f yv = new Vector3f(0.0f, unitVector.getY(), 0.0f);
+        Vector3f zv = new Vector3f(0.0f, 0.0f, unitVector.getZ());
+
+        float yzv = yv.length() * zv.length();
+        float x = (float) Math.acos(dotProduct(yv, zv) / yzv);
+
+        float xzv = xv.length() * zv.length();
+        float y = (float) Math.acos(dotProduct(xv, zv) / xzv);
+
+        float xyv = xv.length() * yv.length();
+        float z = (float) Math.acos(dotProduct(xv, yv) / xyv);
+
+        return createRotationMatrix(x, y, z);
     }
 
-    public static float dotProduct(Vector3f v1, Vector3f v2){
-        float dot = v1.getX()*v2.getX() + v1.getY()*v2.getY() + v1.getZ()*v2.getZ();
-        
+    public static float dotProduct(Vector3f v1, Vector3f v2) {
+        float dot = v1.getX() * v2.getX() + v1.getY() * v2.getY() + v1.getZ()
+                * v2.getZ();
+
         return dot;
     }
-    
+
     private static FloatMatrix4x4 createRotationMatrixX(float angle) {
         double angleInRad = angle * (Math.PI / 180.0);
 

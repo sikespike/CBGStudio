@@ -21,21 +21,21 @@ public class VertexMorph implements Serializable {
      * 
      * @see java.lang.Object#toString()
      */
-    /*@Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
+    /*
+     * @Override public String toString() { StringBuilder b = new
+     * StringBuilder();
+     * 
+     * b.append("{");
+     * 
+     * b.append(StringUtil.jsonParamater("name", this.name)).append(",type:")
+     * .append(this.type).append(",") .append(StringUtil.jsonParamater("data",
+     * this.data));
+     * 
+     * b.append("}");
+     * 
+     * return b.toString(); }
+     */
 
-        b.append("{");
-
-        b.append(StringUtil.jsonParamater("name", this.name)).append(",type:")
-                .append(this.type).append(",")
-                .append(StringUtil.jsonParamater("data", this.data));
-
-        b.append("}");
-
-        return b.toString();
-    }*/
-    
     /**
      * @return the name
      */

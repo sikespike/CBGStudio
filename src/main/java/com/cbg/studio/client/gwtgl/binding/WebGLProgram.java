@@ -16,17 +16,17 @@ package com.cbg.studio.client.gwtgl.binding;
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * Represents a shader program that is called during render operations. A shader program can contain
- * multiple shader which implement the functionality.
+ * Represents a shader program that is called during render operations. A shader
+ * program can contain multiple shader which implement the functionality.
  * 
  */
 public final class WebGLProgram extends JavaScriptObject {
 
-  /**
-   * Protected standard constructor as specified by
-   * {@link com.google.gwt.core.client.JavaScriptObject}.
-   */
-  protected WebGLProgram() {
-  }
+    /**
+     * Protected standard constructor as specified by
+     * {@link com.google.gwt.core.client.JavaScriptObject}.
+     */
+    protected WebGLProgram() {
+    }
 
 }

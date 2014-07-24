@@ -17,45 +17,47 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * 
- * An ArrayBufferView is used to access (read/write) the contents of an ArrayBuffer.
+ * An ArrayBufferView is used to access (read/write) the contents of an
+ * ArrayBuffer.
  * 
  */
 public abstract class ArrayBufferView extends JavaScriptObject {
 
-  /**
-   * protected standard constructor as specified by {@link com.google.gwt.core.client.JavaScriptObject}.
-   */
-  protected ArrayBufferView() {
-    super();
-  }
+    /**
+     * protected standard constructor as specified by
+     * {@link com.google.gwt.core.client.JavaScriptObject}.
+     */
+    protected ArrayBufferView() {
+        super();
+    }
 
-  /**
-   * Returns the underlying {@link ArrayBuffer} of this ArrayBufferView.
-   * 
-   * @return the underlying {@link ArrayBuffer} of this ArrayBufferView.
-   */
-  public final native ArrayBuffer getBuffer() /*-{
-		return this.buffer;
-  }-*/;
+    /**
+     * Returns the underlying {@link ArrayBuffer} of this ArrayBufferView.
+     * 
+     * @return the underlying {@link ArrayBuffer} of this ArrayBufferView.
+     */
+    public final native ArrayBuffer getBuffer() /*-{
+                                                return this.buffer;
+                                                }-*/;
 
-  /**
-   * Returns the non changeable length of the ArrayBufferView in bytes.
-   * 
-   * @return the non changeable length of the ArrayBufferView in bytes.
-   */
-  public final native int getByteLength() /*-{
-		return this.byteLength;
-  }-*/;
+    /**
+     * Returns the non changeable length of the ArrayBufferView in bytes.
+     * 
+     * @return the non changeable length of the ArrayBufferView in bytes.
+     */
+    public final native int getByteLength() /*-{
+                                            return this.byteLength;
+                                            }-*/;
 
-  /**
-   * Returns the non changeable byteOffset of the ArrayBufferView inside of the used
-   * {@link ArrayBuffer}.
-   * 
-   * @return the non changeable byteOffset of the ArrayBufferView inside of the used
-   *         {@link ArrayBuffer}.
-   */
-  public final native int getByteOffset() /*-{
-		return this.byteOffset;
-  }-*/;
+    /**
+     * Returns the non changeable byteOffset of the ArrayBufferView inside of
+     * the used {@link ArrayBuffer}.
+     * 
+     * @return the non changeable byteOffset of the ArrayBufferView inside of
+     *         the used {@link ArrayBuffer}.
+     */
+    public final native int getByteOffset() /*-{
+                                            return this.byteOffset;
+                                            }-*/;
 
 }

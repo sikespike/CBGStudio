@@ -8,22 +8,24 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 
-public class OptionsPanel extends FlexTable implements UiEventPanel,ClickHandler {
+public class OptionsPanel extends FlexTable implements UiEventPanel,
+        ClickHandler {
     private Button renderScene;
 
     private UiCallbackHandler uiHandler;
-    
+
     public OptionsPanel(UiCallbackHandler uiHandler) {
         this.uiHandler = uiHandler;
-        
-        this.renderScene = new Button("<i class=\"fa fa-video-camera fa-3x\"></i>", this);
+
+        this.renderScene = new Button(
+                "<i class=\"fa fa-video-camera fa-3x\"></i>", this);
         this.renderScene.setStyleName("options-button");
-        
+
         this.setWidth("50px");
-        
+
         this.setCellPadding(0);
         this.setCellSpacing(0);
-        this.setWidget(0,0,this.renderScene);
+        this.setWidget(0, 0, this.renderScene);
     }
 
     @Override

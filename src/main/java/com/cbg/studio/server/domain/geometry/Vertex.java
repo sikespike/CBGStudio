@@ -31,11 +31,11 @@ public class Vertex implements Serializable {
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.position = (Vector)stream.readObject();
-        this.normal = (Vector)stream.readObject();
-        this.uv  = (Vector2)stream.readObject();
-        this.bone0Name = (String)stream.readObject();
-        this.bone1Name = (String)stream.readObject();
+        this.position = (Vector) stream.readObject();
+        this.normal = (Vector) stream.readObject();
+        this.uv = (Vector2) stream.readObject();
+        this.bone0Name = (String) stream.readObject();
+        this.bone1Name = (String) stream.readObject();
         this.bone0Weight = stream.readInt();
     }
 
@@ -48,7 +48,7 @@ public class Vertex implements Serializable {
         stream.writeObject(this.bone1Name);
         stream.writeInt(this.bone0Weight);
     }
-    
+
     public Vector getPosition() {
         return position;
     }
@@ -96,7 +96,8 @@ public class Vertex implements Serializable {
     }
 
     /**
-     * @param bone0Name the bone0Name to set
+     * @param bone0Name
+     *            the bone0Name to set
      */
     public void setBone0Name(String bone0Name) {
         this.bone0Name = bone0Name;
@@ -110,7 +111,8 @@ public class Vertex implements Serializable {
     }
 
     /**
-     * @param bone1Name the bone1Name to set
+     * @param bone1Name
+     *            the bone1Name to set
      */
     public void setBone1Name(String bone1Name) {
         this.bone1Name = bone1Name;

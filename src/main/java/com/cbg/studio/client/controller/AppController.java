@@ -47,7 +47,7 @@ public class AppController implements UiCallbackHandler {
 
         this.collapsedPanel.getElement().getParentElement()
                 .setAttribute("colspan", "2");
-        
+
         this.content.getColumnFormatter().setWidth(0, "100%");
         this.content.getColumnFormatter().setWidth(1, "50px");
         this.content.setCellSpacing(0);

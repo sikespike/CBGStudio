@@ -96,6 +96,7 @@ public class CheckBoxTreeItem extends TreeItem implements
         cb.setValue(value, fireEvent);
     }
 
+    @Override
     public void onValueChange(ValueChangeEvent<Boolean> e) {
         Boolean state = e.getValue();
 
@@ -104,7 +105,7 @@ public class CheckBoxTreeItem extends TreeItem implements
             parent.setCheckBoxValue(state, false);
         } else if (state.booleanValue()) {
             CheckBoxTreeItem parent = (CheckBoxTreeItem) this.getParentItem();
-            if(parent.getSelectedCount() == parent.getChildCount()){
+            if (parent.getSelectedCount() == parent.getChildCount()) {
                 parent.setCheckBoxValue(state, false);
             }
         }

@@ -46,7 +46,7 @@ public class CATModelSerializer {
         return b.toString();
     }
 
-    public void writeObject(BufferedWriter bf) throws IOException{
+    public void writeObject(BufferedWriter bf) throws IOException {
         bf.write("{");
         bf.write(serializeMaterials());
         bf.flush();
@@ -76,7 +76,7 @@ public class CATModelSerializer {
         bf.write("}");
         bf.flush();
     }
-    
+
     private String serializeJointList() {
         StringBuilder b = new StringBuilder();
 

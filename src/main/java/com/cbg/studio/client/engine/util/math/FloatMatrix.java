@@ -15,7 +15,6 @@
  */
 package com.cbg.studio.client.engine.util.math;
 
-
 /**
  * TODO should we use a "standard" Java matrix and vector api? Does it work in
  * GWT?

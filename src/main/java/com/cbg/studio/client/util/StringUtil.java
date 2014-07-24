@@ -60,25 +60,25 @@ public class StringUtil {
     }
 
     @SuppressWarnings("all")
-    public static String jsonParamater(String name, Object item){
+    public static String jsonParamater(String name, Object item) {
         StringBuilder b = new StringBuilder();
-        
+
         b.append(name).append(":");
-        
-        if(item == null){
+
+        if (item == null) {
             b.append(jsonWrapString("null"));
-        } else if(item instanceof String){
-            b.append(jsonWrapString((String)item));
-        } else if(item instanceof List<?>){
-            try{
-                b.append(implodeJson((List<String>)item));
-            } catch(Exception e){
-                b.append(serializeJsonList((List<?>)item));
+        } else if (item instanceof String) {
+            b.append(jsonWrapString((String) item));
+        } else if (item instanceof List<?>) {
+            try {
+                b.append(implodeJson((List<String>) item));
+            } catch (Exception e) {
+                b.append(serializeJsonList((List<?>) item));
             }
         } else {
             b.append(item.toString());
         }
-        
+
         return b.toString();
     }
 }

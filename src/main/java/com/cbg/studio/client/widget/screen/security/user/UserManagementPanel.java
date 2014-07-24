@@ -20,7 +20,8 @@ import com.google.gwt.user.client.ui.FlexTable;
  * @author vladimir.kavoun
  * 
  */
-public class UserManagementPanel extends StyledFormPanel implements UiCallbackHandler{
+public class UserManagementPanel extends StyledFormPanel implements
+        UiCallbackHandler {
 
     private CBGTable userTable;
 
@@ -41,23 +42,25 @@ public class UserManagementPanel extends StyledFormPanel implements UiCallbackHa
         this.add(this.userTable);
     }
 
-    private void loadData(){
-        
+    private void loadData() {
+
     }
-    
-    private void setData(List<UserManagementDto> users){
-        int x=0;
-        for(UserManagementDto user:users){
+
+    private void setData(List<UserManagementDto> users) {
+        int x = 0;
+        for (UserManagementDto user : users) {
             final Long uid = user.getUserId();
-            Button uNameButton = new Button(user.getUserName(), new ClickHandler(){
-                public void onClick(ClickEvent e){
-                    UserDetailsDialog d = new UserDetailsDialog(uid);
-                    d.setUiHandler(UserManagementPanel.this);
-                    d.center();
-                    d.show();
-                }
-            });
-            
+            Button uNameButton = new Button(user.getUserName(),
+                    new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent e) {
+                            UserDetailsDialog d = new UserDetailsDialog(uid);
+                            d.setUiHandler(UserManagementPanel.this);
+                            d.center();
+                            d.show();
+                        }
+                    });
+
             userTable.setWidget(x, 0, uNameButton);
             userTable.setHTML(x, 1, user.getFullName());
             userTable.setHTML(x, 2, user.getEmail());
@@ -65,13 +68,14 @@ public class UserManagementPanel extends StyledFormPanel implements UiCallbackHa
             x++;
         }
     }
-    
-    public void onUiAction(UiActionEvent e){
-        if(e.getAction() == UiAction.REFRESH){
+
+    @Override
+    public void onUiAction(UiActionEvent e) {
+        if (e.getAction() == UiAction.REFRESH) {
             this.loadData();
         }
     }
-    
+
     class ActionsPanel extends FlexTable implements ClickHandler {
         public static final String ENABLE = "Enable";
         public static final String DISABLE = "Disable";
@@ -96,6 +100,7 @@ public class UserManagementPanel extends StyledFormPanel implements UiCallbackHa
             this.setWidget(0, 1, delete);
         }
 
+        @Override
         public void onClick(ClickEvent e) {
             if (e.getSource() == enable) {
                 if (!this.user.getLockedOut()) {

@@ -19,21 +19,22 @@ public abstract class AbstractStyledPanel extends AbstractAppDialog implements
 
     private Button collapse;
     private Button close;
-    
+
     public AbstractStyledPanel() {
         super();
     }
 
     @Override
-    public void onClick(ClickEvent e){
-        if(e.getSource() == collapse){
-            this.uiHandler.onUiAction(new UiActionEvent(this, UiAction.COLLAPSE));
-        } else if(e.getSource() == close){
+    public void onClick(ClickEvent e) {
+        if (e.getSource() == collapse) {
+            this.uiHandler
+                    .onUiAction(new UiActionEvent(this, UiAction.COLLAPSE));
+        } else if (e.getSource() == close) {
             this.uiHandler.onUiAction(new UiActionEvent(this, UiAction.CLOSE));
             this.hide(true);
         }
     }
-    
+
     @Override
     protected void onOk() {
 
@@ -43,9 +44,9 @@ public abstract class AbstractStyledPanel extends AbstractAppDialog implements
     protected void onCancel() {
 
     }
-    
+
     @Override
-    public void openPanel(){
+    public void openPanel() {
         this.show();
     }
 }

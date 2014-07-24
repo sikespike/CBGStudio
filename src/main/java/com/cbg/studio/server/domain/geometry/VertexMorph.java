@@ -20,9 +20,9 @@ public class VertexMorph implements Serializable {
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
-        this.name = (String)stream.readObject();
+        this.name = (String) stream.readObject();
         this.type = stream.readInt();
-        this.data = (List<MorphData>)stream.readObject();
+        this.data = (List<MorphData>) stream.readObject();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)
@@ -31,7 +31,7 @@ public class VertexMorph implements Serializable {
         stream.writeInt(this.type);
         stream.writeObject(this.data);
     }
-    
+
     /**
      * @return the name
      */

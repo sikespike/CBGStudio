@@ -10,39 +10,40 @@ import java.io.Serializable;
  * @author Xif
  * 
  */
-public class Vector2 implements Serializable{
+public class Vector2 implements Serializable {
     private static final long serialVersionUID = 1L;
     private float x;
     private float y;
 
-    public Vector2(){
+    public Vector2() {
         this.x = 0.0f;
         this.y = 0.0f;
     }
-    
-    public Vector2(float x, float y){
+
+    public Vector2(float x, float y) {
         this.x = x;
         this.y = y;
     }
-    
-    public Vector2(float[] vector){
-        if(vector.length == 2){
+
+    public Vector2(float[] vector) {
+        if (vector.length == 2) {
             this.x = vector[0];
             this.y = vector[1];
         } else {
-            throw new RuntimeException("Vector provided is of size:"+vector.length);
+            throw new RuntimeException("Vector provided is of size:"
+                    + vector.length);
         }
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder b = new StringBuilder();
-        
+
         b.append("{x:").append(this.x).append(",y:").append(this.y).append("}");
-        
+
         return b.toString();
     }
-    
+
     @SuppressWarnings("all")
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
@@ -55,7 +56,7 @@ public class Vector2 implements Serializable{
         stream.writeFloat(this.x);
         stream.writeFloat(this.y);
     }
-    
+
     public float getX() {
         return x;
     }
@@ -72,12 +73,12 @@ public class Vector2 implements Serializable{
         this.y = y;
     }
 
-    public float[] toArray(){
+    public float[] toArray() {
         float[] vector = new float[2];
-        
+
         vector[0] = this.x;
         vector[1] = this.y;
-        
+
         return vector;
     }
 }

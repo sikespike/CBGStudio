@@ -11,19 +11,20 @@ import com.google.gwt.user.client.ui.MenuItem;
 
 /**
  * @author Siebe
- *
+ * 
  */
 public class CBGStudioMenu extends MenuBar {
-    public CBGStudioMenu(UiCallbackHandler handler){
+    public CBGStudioMenu(UiCallbackHandler handler) {
         super();
-        
+
         MenuBar fileMenu = new MenuBar(true);
-        MenuItem openFile = new MenuItem("Open File...",new OpenFileCommand(handler));
-        MenuItem saveFile = new MenuItem("Save",new SaveFileCommand(handler));
-        
+        MenuItem openFile = new MenuItem("Open File...", new OpenFileCommand(
+                handler));
+        MenuItem saveFile = new MenuItem("Save", new SaveFileCommand(handler));
+
         fileMenu.addItem(openFile);
         fileMenu.addItem(saveFile);
-        
-        this.addItem("File",fileMenu);
+
+        this.addItem("File", fileMenu);
     }
 }

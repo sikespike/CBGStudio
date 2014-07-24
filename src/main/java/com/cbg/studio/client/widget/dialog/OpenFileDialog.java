@@ -45,7 +45,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
         this.body.setWidget(0, 0, new HTML("File:"));
 
         form = new FormPanel();
-        form.setAction(GWT.getModuleBaseURL()+"openFile");
+        form.setAction(GWT.getModuleBaseURL() + "openFile");
         form.setMethod(FormPanel.METHOD_POST);
         form.setEncoding(FormPanel.ENCODING_MULTIPART);
 
@@ -65,6 +65,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
      * onSubmitComplete
      * (com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent)
      */
+    @Override
     public void onSubmitComplete(SubmitCompleteEvent event) {
         RPCUtil.getModelRpc().getModel(new AsyncCallback<CATModelDto>() {
 
@@ -75,6 +76,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
              * com.google.gwt.user.client.rpc.AsyncCallback#onFailure(java.lang
              * .Throwable)
              */
+            @Override
             public void onFailure(Throwable caught) {
 
             }
@@ -86,6 +88,7 @@ public class OpenFileDialog extends AbstractAppDialog implements
              * com.google.gwt.user.client.rpc.AsyncCallback#onSuccess(java.lang
              * .Object)
              */
+            @Override
             public void onSuccess(CATModelDto result) {
                 setModel(result);
                 OpenFileDialog.this.uiHandler.onUiAction(new UiActionEvent(
