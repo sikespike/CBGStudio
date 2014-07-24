@@ -33,7 +33,7 @@ public class CubeFactory {
         return mesh;
     }
 
-    private static List<Vector3f> createPlaneVertices(Vector3f topleft,
+    public static List<Vector3f> createPlaneVertices(Vector3f topleft,
             Vector3f topright, Vector3f bottomright, Vector3f bottomleft) {
         List<Vector3f> plane = new ArrayList<Vector3f>(6);
         plane.addAll(Arrays.asList(topleft, topright, bottomleft, bottomleft,
@@ -185,7 +185,7 @@ public class CubeFactory {
         return new Vector2f(u, v);
     }
 
-    private static List<Float> flattenVector3fList(List<Vector3f> inList) {
+    public static List<Float> flattenVector3fList(List<Vector3f> inList) {
         List<Float> outList = new ArrayList<Float>(inList.size() * 3);
         for (Vector3f v : inList) {
             outList.addAll(Arrays.asList(v.getX(), v.getY(), v.getZ()));
@@ -201,7 +201,7 @@ public class CubeFactory {
         return outList;
     }
 
-    private static float[] floatListToFloatArray(List<Float> list) {
+    public static float[] floatListToFloatArray(List<Float> list) {
         float[] verts = new float[list.size()];
 
         for (int x = 0; x < list.size(); x++) {

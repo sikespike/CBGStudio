@@ -26,23 +26,27 @@ public class MathUtil {
     public static FloatMatrix4x4 createPerspectiveMatrix(
             int fieldOfViewVertical, float aspectRatio, float minimumClearance,
             float maximumClearance) {
-        double fieldOfViewInRad = fieldOfViewVertical * Math.PI / 180.0;
-        return new FloatMatrix4x4(new float[][] {
-                new float[] {
-                        (float) (Math.tan(fieldOfViewInRad) / aspectRatio), 0,
-                        0, 0 },
-                new float[] {
-                        0,
-                        (float) (1 / Math.tan(fieldOfViewVertical * Math.PI
-                                / 180.0)), 0, 0 },
-                new float[] {
-                        0,
-                        0,
-                        (minimumClearance + maximumClearance)
-                                / (minimumClearance - maximumClearance),
-                        2 * minimumClearance * maximumClearance
-                                / (minimumClearance - maximumClearance) },
-                new float[] { 0, 0, -1, 0 } });
+        float top = minimumClearance
+                * (float) Math.tan(fieldOfViewVertical * Math.PI / 360.0);
+        float bottom = -top;
+        float left = bottom * aspectRatio;
+        float right = top * aspectRatio;
+
+        float X = 2 * minimumClearance / (right - left);
+        float Y = 2 * minimumClearance / (top - bottom);
+        float A = (right + left) / (right - left);
+        float B = (top + bottom) / (top - bottom);
+        float C = -(maximumClearance + minimumClearance)
+                / (maximumClearance - minimumClearance);
+        float D = -2 * maximumClearance * minimumClearance
+                / (maximumClearance - minimumClearance);
+
+        float[] v1 = new float[] { X, 0.0f, A, 0.0f };
+        float[] v2 = new float[] { 0.0f, Y, B, 0.0f };
+        float[] v3 = new float[] { 0.0f, 0.0f, C, D };
+        float[] v4 = new float[] { 0.0f, 0.0f, 1.0f, 0.0f };
+
+        return new FloatMatrix4x4(new float[][] { v1, v2, v3, v4 });
     }
 
     /**
@@ -56,17 +60,36 @@ public class MathUtil {
      *            the angle in degrees for the rotation around the z axis
      * @return the created matrix
      */
-    public static FloatMatrix4x4 createRotationMatrix(float angleX, float angleY,
-            float angleZ) {
+    public static FloatMatrix4x4 createRotationMatrix(float angleX,
+            float angleY, float angleZ) {
         return createRotationMatrixX(angleX).multiply(
                 createRotationMatrixY(angleY)).multiply(
                 createRotationMatrixZ(angleZ));
     }
 
     public static FloatMatrix4x4 createRotationMatrix(Vector3f vector) {
-        Vector3f unitVector = (Vector3f)vector.toUnitVector();
+        Vector3f unitVector = (Vector3f) vector.toUnitVector();
+
+        Vector3f xv = new Vector3f(unitVector.getX(),0.0f,0.0f);
+        Vector3f yv = new Vector3f(0.0f,unitVector.getY(),0.0f);
+        Vector3f zv = new Vector3f(0.0f,0.0f,unitVector.getZ());
         
-        return createRotationMatrix(unitVector.getX(), unitVector.getY(), unitVector.getY());
+        float yzv = yv.length()*zv.length();
+        float x = (float)Math.acos(dotProduct(yv,zv)/yzv);
+        
+        float xzv = xv.length()*zv.length();
+        float y = (float)Math.acos(dotProduct(xv,zv)/xzv);
+        
+        float xyv = xv.length()*yv.length();
+        float z = (float)Math.acos(dotProduct(xv,yv)/xyv);
+        
+        return createRotationMatrix(x,y,z);
+    }
+
+    public static float dotProduct(Vector3f v1, Vector3f v2){
+        float dot = v1.getX()*v2.getX() + v1.getY()*v2.getY() + v1.getZ()*v2.getZ();
+        
+        return dot;
     }
     
     private static FloatMatrix4x4 createRotationMatrixX(float angle) {
@@ -147,20 +170,21 @@ public class MathUtil {
                         new float[] { 0, 0, 1, translateZ },
                         new float[] { 0, 0, 0, 1 } });
     }
-    
+
     public static FloatMatrix4x4 createTranslationMatrix(Vector3f vector) {
-        return createTranslationMatrix(vector.getX(), vector.getY(), vector.getZ());
+        return createTranslationMatrix(vector.getX(), vector.getY(),
+                vector.getZ());
     }
-    
-    public static Vector3f subtractVector(Vector3f v1, Vector3f v2){
+
+    public static Vector3f subtractVector(Vector3f v1, Vector3f v2) {
         float[] vectorArray = new float[3];
-        
+
         vectorArray[0] = v2.getX() - v1.getX();
         vectorArray[1] = v2.getY() - v1.getY();
         vectorArray[2] = v2.getZ() - v1.getZ();
-        
+
         Vector3f vector = new Vector3f(vectorArray);
-        
+
         return vector;
     }
 }
