@@ -2,6 +2,8 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
+import com.cbg.studio.client.engine.util.math.Vector3f;
+
 public class RigidBody implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
@@ -10,9 +12,9 @@ public class RigidBody implements Serializable {
     private int collisionMaskId;
     private String shape;
 
-    private Vector size;
-    private Vector position;
-    private Vector rotation;
+    private Vector3f size;
+    private Vector3f position;
+    private Vector3f rotation;
 
     private float mass;
     private float velocityAtt;
@@ -132,7 +134,7 @@ public class RigidBody implements Serializable {
     /**
      * @return the size
      */
-    public Vector getSize() {
+    public Vector3f getSize() {
         return size;
     }
 
@@ -140,14 +142,14 @@ public class RigidBody implements Serializable {
      * @param size
      *            the size to set
      */
-    public void setSize(Vector size) {
+    public void setSize(Vector3f size) {
         this.size = size;
     }
 
     /**
      * @return the position
      */
-    public Vector getPosition() {
+    public Vector3f getPosition() {
         return position;
     }
 
@@ -155,14 +157,14 @@ public class RigidBody implements Serializable {
      * @param position
      *            the position to set
      */
-    public void setPosition(Vector position) {
+    public void setPosition(Vector3f position) {
         this.position = position;
     }
 
     /**
      * @return the rotation
      */
-    public Vector getRotation() {
+    public Vector3f getRotation() {
         return rotation;
     }
 
@@ -170,7 +172,7 @@ public class RigidBody implements Serializable {
      * @param rotation
      *            the rotation to set
      */
-    public void setRotation(Vector rotation) {
+    public void setRotation(Vector3f rotation) {
         this.rotation = rotation;
     }
 

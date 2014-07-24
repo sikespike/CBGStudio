@@ -108,11 +108,7 @@ public abstract class AbstractGwtEngine extends FlowPanel {
     private void initBuffers() {
         vertexBuffer = glContext.createBuffer();
         glContext.bindBuffer(WebGLRenderingContext.ARRAY_BUFFER, vertexBuffer);
-        float[] vertices = new float[]{
-                0.0f,  1.0f,  -5.0f, // first vertex
-               -1.0f, -1.0f,  -5.0f, // second vertex
-                1.0f, -1.0f,  -5.0f  // third vertex
-};
+        float[] vertices = this.getVerticies();
         Float32Array arr = Float32Array.create(vertices);
         glContext.bufferData(WebGLRenderingContext.ARRAY_BUFFER,
                 arr,
@@ -127,23 +123,4 @@ public abstract class AbstractGwtEngine extends FlowPanel {
     }
     
     protected abstract void drawScene();
-    
-    protected float[] createPerspectiveMatrix(int fieldOfViewVertical, float aspectRatio, float minimumClearance, float maximumClearance) {
-        float top    = minimumClearance * (float)Math.tan(fieldOfViewVertical * Math.PI / 360.0);
-        float bottom = -top;
-        float left   = bottom * aspectRatio;
-        float right  = top * aspectRatio;
-
-        float X = 2*minimumClearance/(right-left);
-        float Y = 2*minimumClearance/(top-bottom);
-        float A = (right+left)/(right-left);
-        float B = (top+bottom)/(top-bottom);
-        float C = -(maximumClearance+minimumClearance)/(maximumClearance-minimumClearance);
-        float D = -2*maximumClearance*minimumClearance/(maximumClearance-minimumClearance);
-
-        return new float[]{     X, 0.0f, A, 0.0f,
-                                                0.0f, Y, B, 0.0f,
-                                                0.0f, 0.0f, C, -1.0f,
-                                                0.0f, 0.0f, D, 0.0f};
-};
 }

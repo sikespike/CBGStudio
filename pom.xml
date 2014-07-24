@@ -10,7 +10,6 @@
     <properties>
         <!-- Convenience property to set the GWT version -->
         <gwtVersion>2.6.1</gwtVersion>
-        <gwtglVersion>0.9.1</gwtglVersion>
         <springVersion>4.0.6.RELEASE</springVersion>
         <!-- GWT needs at least java 1.5 -->
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>

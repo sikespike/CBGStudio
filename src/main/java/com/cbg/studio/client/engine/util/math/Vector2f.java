@@ -15,6 +15,10 @@
  */
 package com.cbg.studio.client.engine.util.math;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a vector with two elements.
  * 
@@ -22,91 +26,124 @@ package com.cbg.studio.client.engine.util.math;
  * @author Steffen Schäfer
  * 
  */
-public class Vector2f implements Vectorf {
-	private float u;
-	private float v;
+public class Vector2f implements Vectorf, Serializable {
+    private static final long serialVersionUID = 1L;
+    private float u;
+    private float v;
 
-	/**
-	 * Constructs a new instance of the Vector2f with the given coordinates to
-	 * set.
-	 * 
-	 * @param u
-	 * @param v
-	 */
-	public Vector2f(float u, float v) {
-		super();
-		this.u = u;
-		this.v = v;
-	}
+    public Vector2f() {
+        this.u = 0.0f;
+        this.v = 0.0f;
+    }
 
-	/**
-	 * Returns the u coordinate.
-	 * 
-	 * @return the u coordinate
-	 */
-	public float getU() {
-		return u;
-	}
+    /**
+     * Constructs a new instance of the Vector2f with the given coordinates to
+     * set.
+     * 
+     * @param u
+     * @param v
+     */
+    public Vector2f(float u, float v) {
+        super();
+        this.u = u;
+        this.v = v;
+    }
 
-	/**
-	 * Sets the u coordinate.
-	 * 
-	 * @param u
-	 *            the u coordinate to set
-	 */
-	public void setU(float u) {
-		this.u = u;
-	}
+    public Vector2f(float[] vector) {
+        super();
+        this.u = vector[0];
+        this.v = vector[1];
+    }
 
-	/**
-	 * Returns the v coordinate.
-	 * 
-	 * @return the v coordinate
-	 */
-	public float getV() {
-		return v;
-	}
+    /**
+     * Returns the u coordinate.
+     * 
+     * @return the u coordinate
+     */
+    public float getU() {
+        return u;
+    }
 
-	/**
-	 * Sets the v coordinate.
-	 * 
-	 * @param v
-	 *            the v coordinate to set
-	 */
-	public void setV(float v) {
-		this.v = v;
-	}
+    /**
+     * Sets the u coordinate.
+     * 
+     * @param u
+     *            the u coordinate to set
+     */
+    public void setU(float u) {
+        this.u = u;
+    }
 
-	/* (non-Javadoc)
-	 * @see com.googlecode.gwtgl.example.client.util.math.Vector#multiply(float)
-	 */
-	@Override
-	public Vectorf multiply(float scalar) {
-		return new Vector2f(this.u * scalar, this.v * scalar);
-	}
+    /**
+     * Returns the v coordinate.
+     * 
+     * @return the v coordinate
+     */
+    public float getV() {
+        return v;
+    }
 
-	/* (non-Javadoc)
-	 * @see com.googlecode.gwtgl.example.client.util.math.Vector#length()
-	 */
-	@Override
-	public float length() {
-		return (float) Math.sqrt(this.u * this.u + this.v * this.v);
-	}
+    /**
+     * Sets the v coordinate.
+     * 
+     * @param v
+     *            the v coordinate to set
+     */
+    public void setV(float v) {
+        this.v = v;
+    }
 
-	/* (non-Javadoc)
-	 * @see com.googlecode.gwtgl.example.client.util.math.Vector#toUnitVector()
-	 */
-	@Override
-	public Vectorf toUnitVector() {
-		float length = length();
-		return new Vector2f(this.u / length, this.v / length);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.googlecode.gwtgl.example.client.util.math.Vector#multiply(float)
+     */
+    @Override
+    public Vectorf multiply(float scalar) {
+        return new Vector2f(this.u * scalar, this.v * scalar);
+    }
 
-	/* (non-Javadoc)
-	 * @see com.googlecode.gwtgl.example.client.util.math.Vector#toArray()
-	 */
-	@Override
-	public float[] toArray() {
-		return new float[] { this.u, this.v };
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.googlecode.gwtgl.example.client.util.math.Vector#length()
+     */
+    @Override
+    public float length() {
+        return (float) Math.sqrt(this.u * this.u + this.v * this.v);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.googlecode.gwtgl.example.client.util.math.Vector#toUnitVector()
+     */
+    @Override
+    public Vectorf toUnitVector() {
+        float length = length();
+        return new Vector2f(this.u / length, this.v / length);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.googlecode.gwtgl.example.client.util.math.Vector#toArray()
+     */
+    @Override
+    public float[] toArray() {
+        return new float[] { this.u, this.v };
+    }
+    
+    @Override
+    public List<Float> toList(){
+        List<Float> list = new ArrayList<Float>();
+        
+        float[] coords = this.toArray();
+        
+        for(int x=0;x<coords.length;x++){
+            list.add(new Float(coords[x]));
+        }
+        
+        return list;
+    }
 }

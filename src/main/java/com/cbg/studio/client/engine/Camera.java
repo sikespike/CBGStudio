@@ -20,14 +20,14 @@ public class Camera {
                 .subtractVector(this.lookAt, this.lookFrom);
 
         FloatMatrix perspectiveMatrix = MathUtil.createPerspectiveMatrix(45,
-                1.0f, 0.1f, 1000);
+                1.0f, 0.1f, 100);
         FloatMatrix translationMatrix = MathUtil
                 .createTranslationMatrix(this.lookFrom);
         FloatMatrix rotationMatrix = MathUtil.createRotationMatrix(direction);
         FloatMatrix resultingMatrix = perspectiveMatrix.multiply(
                 translationMatrix).multiply(rotationMatrix);
         
-        return resultingMatrix;
+        return perspectiveMatrix;
     }
 
     public Vector3f getLookFrom() {

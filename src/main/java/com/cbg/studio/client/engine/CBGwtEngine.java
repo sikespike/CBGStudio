@@ -9,6 +9,9 @@ import java.util.List;
 import com.cbg.studio.client.data.CATModelDto;
 import com.cbg.studio.client.data.geometry.Triangle;
 import com.cbg.studio.client.data.geometry.Vertex;
+import com.cbg.studio.client.engine.util.CubeFactory;
+import com.cbg.studio.client.engine.util.Mesh;
+import com.cbg.studio.client.engine.util.math.FloatMatrix;
 import com.cbg.studio.client.gwtgl.binding.WebGLRenderingContext;
 import com.cbg.studio.client.gwtgl.binding.WebGLUniformLocation;
 
@@ -33,7 +36,9 @@ public class CBGwtEngine extends AbstractGwtEngine {
 
     @Override
     protected float[] getVerticies() {
-        return this.polygonsToFloatArray(this.model.getPolygons());
+        Mesh cube = CubeFactory.createNewInstance(1.0f);
+        return cube.getVertices();
+        //return this.polygonsToFloatArray(this.model.getPolygons());
     }
 
     private float[] polygonsToFloatArray(List<Triangle> polygons) {
@@ -50,7 +55,7 @@ public class CBGwtEngine extends AbstractGwtEngine {
         List<Float> list = new ArrayList<Float>();
 
         for (Vertex v : polygon.getVerticies()) {
-            list.addAll(v.getPosition().toFloatList3());
+            list.addAll(v.getPosition().toList());
         }
 
         return list;
@@ -72,9 +77,12 @@ public class CBGwtEngine extends AbstractGwtEngine {
                 | WebGLRenderingContext.DEPTH_BUFFER_BIT);
         WebGLUniformLocation uniformLocation = glContext.getUniformLocation(
                 shaderProgram, "perspectiveMatrix");
-        glContext.uniformMatrix4fv(uniformLocation, false, this.camera.getPerspectiveMatrix().getFlatData());
+        FloatMatrix pMatrix = this.camera.getPerspectiveMatrix();
+        
+        glContext.uniformMatrix4fv(uniformLocation, false, pMatrix.getColumnWiseFlatData());
         glContext.vertexAttribPointer(vertexPositionAttribute, 3,
                 WebGLRenderingContext.FLOAT, false, 0, 0);
-        glContext.drawArrays(WebGLRenderingContext.TRIANGLES, 0, 3);
+        glContext.drawArrays(WebGLRenderingContext.TRIANGLES, 0, 12);
+        glContext.flush();
     }
 }

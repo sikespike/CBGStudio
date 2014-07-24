@@ -5,6 +5,8 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
+import com.cbg.studio.client.engine.util.math.Vector3f;
+
 /**
  * @author Siebe
  * 
@@ -12,7 +14,7 @@ import java.io.Serializable;
 public class MorphData implements Serializable {
     private static final long serialVersionUID = 1L;
     private int index;
-    private Vector offset;
+    private Vector3f offset;
 
     /*
      * (non-Javadoc)
@@ -49,7 +51,7 @@ public class MorphData implements Serializable {
     /**
      * @return the offset
      */
-    public Vector getOffset() {
+    public Vector3f getOffset() {
         return offset;
     }
 
@@ -57,7 +59,7 @@ public class MorphData implements Serializable {
      * @param offset
      *            the offset to set
      */
-    public void setOffset(Vector offset) {
+    public void setOffset(Vector3f offset) {
         this.offset = offset;
     }
 }

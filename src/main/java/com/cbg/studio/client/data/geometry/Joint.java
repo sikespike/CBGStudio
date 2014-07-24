@@ -5,6 +5,8 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
+import com.cbg.studio.client.engine.util.math.Vector3f;
+
 /**
  * @author Siebe
  * 
@@ -14,14 +16,14 @@ public class Joint implements Serializable {
     private String name;
     private RigidBody sourceRigidBody;
     private RigidBody destRigidBody;
-    private Vector location;
-    private Vector rotation;
-    private Vector minLoc;
-    private Vector maxLoc;
-    private Vector minRot;
-    private Vector maxRot;
-    private Vector springConst;
-    private Vector springRotConst;
+    private Vector3f location;
+    private Vector3f rotation;
+    private Vector3f minLoc;
+    private Vector3f maxLoc;
+    private Vector3f minRot;
+    private Vector3f maxRot;
+    private Vector3f springConst;
+    private Vector3f springRotConst;
 
     /*
      * (non-Javadoc)
@@ -111,7 +113,7 @@ public class Joint implements Serializable {
     /**
      * @return the location
      */
-    public Vector getLocation() {
+    public Vector3f getLocation() {
         return location;
     }
 
@@ -119,14 +121,14 @@ public class Joint implements Serializable {
      * @param location
      *            the location to set
      */
-    public void setLocation(Vector location) {
+    public void setLocation(Vector3f location) {
         this.location = location;
     }
 
     /**
      * @return the rotation
      */
-    public Vector getRotation() {
+    public Vector3f getRotation() {
         return rotation;
     }
 
@@ -134,14 +136,14 @@ public class Joint implements Serializable {
      * @param rotation
      *            the rotation to set
      */
-    public void setRotation(Vector rotation) {
+    public void setRotation(Vector3f rotation) {
         this.rotation = rotation;
     }
 
     /**
      * @return the minLoc
      */
-    public Vector getMinLoc() {
+    public Vector3f getMinLoc() {
         return minLoc;
     }
 
@@ -149,14 +151,14 @@ public class Joint implements Serializable {
      * @param minLoc
      *            the minLoc to set
      */
-    public void setMinLoc(Vector minLoc) {
+    public void setMinLoc(Vector3f minLoc) {
         this.minLoc = minLoc;
     }
 
     /**
      * @return the maxLoc
      */
-    public Vector getMaxLoc() {
+    public Vector3f getMaxLoc() {
         return maxLoc;
     }
 
@@ -164,14 +166,14 @@ public class Joint implements Serializable {
      * @param maxLoc
      *            the maxLoc to set
      */
-    public void setMaxLoc(Vector maxLoc) {
+    public void setMaxLoc(Vector3f maxLoc) {
         this.maxLoc = maxLoc;
     }
 
     /**
      * @return the minRot
      */
-    public Vector getMinRot() {
+    public Vector3f getMinRot() {
         return minRot;
     }
 
@@ -179,14 +181,14 @@ public class Joint implements Serializable {
      * @param minRot
      *            the minRot to set
      */
-    public void setMinRot(Vector minRot) {
+    public void setMinRot(Vector3f minRot) {
         this.minRot = minRot;
     }
 
     /**
      * @return the maxRot
      */
-    public Vector getMaxRot() {
+    public Vector3f getMaxRot() {
         return maxRot;
     }
 
@@ -194,14 +196,14 @@ public class Joint implements Serializable {
      * @param maxRot
      *            the maxRot to set
      */
-    public void setMaxRot(Vector maxRot) {
+    public void setMaxRot(Vector3f maxRot) {
         this.maxRot = maxRot;
     }
 
     /**
      * @return the springConst
      */
-    public Vector getSpringConst() {
+    public Vector3f getSpringConst() {
         return springConst;
     }
 
@@ -209,14 +211,14 @@ public class Joint implements Serializable {
      * @param springConst
      *            the springConst to set
      */
-    public void setSpringConst(Vector springConst) {
+    public void setSpringConst(Vector3f springConst) {
         this.springConst = springConst;
     }
 
     /**
      * @return the springRotConst
      */
-    public Vector getSpringRotConst() {
+    public Vector3f getSpringRotConst() {
         return springRotConst;
     }
 
@@ -224,7 +226,7 @@ public class Joint implements Serializable {
      * @param springRotConst
      *            the springRotConst to set
      */
-    public void setSpringRotConst(Vector springRotConst) {
+    public void setSpringRotConst(Vector3f springRotConst) {
         this.springRotConst = springRotConst;
     }
 }

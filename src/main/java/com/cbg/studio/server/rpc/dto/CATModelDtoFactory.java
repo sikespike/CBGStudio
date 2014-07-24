@@ -16,10 +16,10 @@ import com.cbg.studio.client.data.geometry.MorphData;
 import com.cbg.studio.client.data.geometry.Motion;
 import com.cbg.studio.client.data.geometry.RigidBody;
 import com.cbg.studio.client.data.geometry.Triangle;
-import com.cbg.studio.client.data.geometry.Vector;
-import com.cbg.studio.client.data.geometry.Vector2;
 import com.cbg.studio.client.data.geometry.Vertex;
 import com.cbg.studio.client.data.geometry.VertexMorph;
+import com.cbg.studio.client.engine.util.math.Vector2f;
+import com.cbg.studio.client.engine.util.math.Vector3f;
 import com.cbg.studio.server.domain.CATModel;
 
 /**
@@ -99,9 +99,9 @@ public class CATModelDtoFactory {
         return null;
     }
 
-    public static Vector2 createVector2(
+    public static Vector2f createVector2f(
             com.cbg.studio.server.domain.geometry.Vector2 domain) {
-        Vector2 vector = new Vector2(domain.toArray());
+        Vector2f vector = new Vector2f(domain.toArray());
 
         return vector;
     }
@@ -111,9 +111,9 @@ public class CATModelDtoFactory {
         Vertex v = new Vertex();
 
         v.setBone0Weight(domain.getBone0Weight());
-        v.setPosition(createVector(domain.getPosition()));
-        v.setNormal(createVector(domain.getNormal()));
-        v.setUv(createVector2(domain.getUv()));
+        v.setPosition(createVector3f(domain.getPosition()));
+        v.setNormal(createVector3f(domain.getNormal()));
+        v.setUv(createVector2f(domain.getUv()));
 
         return v;
     }
@@ -135,7 +135,7 @@ public class CATModelDtoFactory {
 
         b.setName(domain.getName());
         b.setType(domain.getType());
-        b.setPosition(createVector(domain.getPosition()));
+        b.setPosition(createVector3f(domain.getPosition()));
 
         return b;
     }
@@ -170,7 +170,7 @@ public class CATModelDtoFactory {
         MorphData md = new MorphData();
 
         md.setIndex(domain.getIndex());
-        md.setOffset(createVector(domain.getOffset()));
+        md.setOffset(createVector3f(domain.getOffset()));
 
         return md;
     }
@@ -192,9 +192,9 @@ public class CATModelDtoFactory {
         b.setCollisionGroupId(domain.getCollisionGroupId());
         b.setCollisionMaskId(domain.getCollisionMaskId());
         b.setShape(domain.getShape());
-        b.setSize(createVector(domain.getSize()));
-        b.setPosition(createVector(domain.getPosition()));
-        b.setRotation(createVector(domain.getRotation()));
+        b.setSize(createVector3f(domain.getSize()));
+        b.setPosition(createVector3f(domain.getPosition()));
+        b.setRotation(createVector3f(domain.getRotation()));
         b.setMass(domain.getMass());
         b.setVelocityAtt(domain.getVelocityAtt());
         b.setRotationAtt(domain.getRotationAtt());
@@ -210,14 +210,14 @@ public class CATModelDtoFactory {
         Joint j = new Joint();
 
         j.setName(domain.getName());
-        j.setLocation(createVector(domain.getLocation()));
-        j.setRotation(createVector(domain.getRotation()));
-        j.setMinLoc(createVector(domain.getMinLoc()));
-        j.setMaxLoc(createVector(domain.getMaxLoc()));
-        j.setMinRot(createVector(domain.getMinRot()));
-        j.setMaxRot(createVector(domain.getMaxRot()));
-        j.setSpringConst(createVector(domain.getSpringConst()));
-        j.setSpringRotConst(createVector(domain.getSpringRotConst()));
+        j.setLocation(createVector3f(domain.getLocation()));
+        j.setRotation(createVector3f(domain.getRotation()));
+        j.setMinLoc(createVector3f(domain.getMinLoc()));
+        j.setMaxLoc(createVector3f(domain.getMaxLoc()));
+        j.setMinRot(createVector3f(domain.getMinRot()));
+        j.setMaxRot(createVector3f(domain.getMaxRot()));
+        j.setSpringConst(createVector3f(domain.getSpringConst()));
+        j.setSpringRotConst(createVector3f(domain.getSpringRotConst()));
 
         return j;
     }
@@ -234,17 +234,17 @@ public class CATModelDtoFactory {
             com.cbg.studio.server.domain.geometry.Material domain) {
         Material m = new Material();
 
-        m.setColor(createVector(domain.getColor()));
-        m.setSpecLight(createVector(domain.getSpecLight()));
-        m.setAmbientLight(createVector(domain.getAmbientLight()));
+        m.setColor(createVector3f(domain.getColor()));
+        m.setSpecLight(createVector3f(domain.getSpecLight()));
+        m.setAmbientLight(createVector3f(domain.getAmbientLight()));
         m.setTexture(domain.getTexture());
 
         return m;
     }
 
-    public static Vector createVector(
+    public static Vector3f createVector3f(
             com.cbg.studio.server.domain.geometry.Vector domain) {
-        Vector vector = new Vector(domain.toArray());
+        Vector3f vector = new Vector3f(domain.toArray());
         return vector;
     }
 

@@ -5,6 +5,8 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
+import com.cbg.studio.client.engine.util.math.Vector3f;
+
 /**
  * @author Siebe
  * 
@@ -19,7 +21,7 @@ public class Bone implements Serializable {
     private int type;
     private Bone target;
 
-    private Vector position;
+    private Vector3f position;
 
     /*@Override
     public String toString() {
@@ -123,7 +125,7 @@ public class Bone implements Serializable {
     /**
      * @return the position
      */
-    public Vector getPosition() {
+    public Vector3f getPosition() {
         return position;
     }
 
@@ -131,7 +133,7 @@ public class Bone implements Serializable {
      * @param position
      *            the position to set
      */
-    public void setPosition(Vector position) {
+    public void setPosition(Vector3f position) {
         this.position = position;
     }
 }

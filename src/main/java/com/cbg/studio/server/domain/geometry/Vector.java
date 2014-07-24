@@ -128,12 +128,11 @@ public class Vector implements Serializable{
     }
     
     public float[] toArray(){
-        float[] vector = new float[4];
+        float[] vector = new float[3];
         
         vector[0] = this.x;
         vector[1] = this.y;
         vector[2] = this.z;
-        vector[3] = this.a;
         
         return vector;
     }

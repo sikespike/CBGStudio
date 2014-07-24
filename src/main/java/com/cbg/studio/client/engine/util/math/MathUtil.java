@@ -26,25 +26,24 @@ public class MathUtil {
     public static FloatMatrix4x4 createPerspectiveMatrix(
             int fieldOfViewVertical, float aspectRatio, float minimumClearance,
             float maximumClearance) {
-            float top    = minimumClearance * (float)Math.tan(fieldOfViewVertical * Math.PI / 360.0);
-            float bottom = -top;
-            float left   = bottom * aspectRatio;
-            float right  = top * aspectRatio;
-
-            float X = 2*minimumClearance/(right-left);
-            float Y = 2*minimumClearance/(top-bottom);
-            float A = (right+left)/(right-left);
-            float B = (top+bottom)/(top-bottom);
-            float C = -(maximumClearance+minimumClearance)/(maximumClearance-minimumClearance);
-            float D = -2*maximumClearance*minimumClearance/(maximumClearance-minimumClearance);
-
-            float[] v1 = new float[]{X, 0.0f, A, 0.0f};
-            float[] v2 = new float[]{0.0f, Y, B, 0.0f};
-            float[] v3 = new float[]{0.0f, 0.0f, C, -1.0f};
-            float[] v4 = new float[]{0.0f, 0.0f, D, 0.0f};
-            
-        return new FloatMatrix4x4(new float[][] {v1,v2,v3,v4});
-    };
+        double fieldOfViewInRad = fieldOfViewVertical * Math.PI / 180.0;
+        return new FloatMatrix4x4(new float[][] {
+                new float[] {
+                        (float) (Math.tan(fieldOfViewInRad) / aspectRatio), 0,
+                        0, 0 },
+                new float[] {
+                        0,
+                        (float) (1 / Math.tan(fieldOfViewVertical * Math.PI
+                                / 180.0)), 0, 0 },
+                new float[] {
+                        0,
+                        0,
+                        (minimumClearance + maximumClearance)
+                                / (minimumClearance - maximumClearance),
+                        2 * minimumClearance * maximumClearance
+                                / (minimumClearance - maximumClearance) },
+                new float[] { 0, 0, -1, 0 } });
+    }
 
     /**
      * Creates a rotation matrix.

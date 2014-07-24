@@ -5,16 +5,19 @@ package com.cbg.studio.client.data.geometry;
 
 import java.io.Serializable;
 
+import com.cbg.studio.client.engine.util.math.Vector2f;
+import com.cbg.studio.client.engine.util.math.Vector3f;
+
 /**
  * @author Siebe
  * 
  */
 public class Vertex implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Vector position;
-    private Vector normal;
+    private Vector3f position;
+    private Vector3f normal;
 
-    private Vector2 uv;
+    private Vector2f uv;
 
     private Bone bone0;
     private Bone bone1;
@@ -22,9 +25,9 @@ public class Vertex implements Serializable {
     private int bone0Weight;
 
     public Vertex() {
-        this.position = new Vector();
-        this.normal = new Vector();
-        this.uv = new Vector2();
+        this.position = new Vector3f();
+        this.normal = new Vector3f();
+        this.uv = new Vector2f();
     }
 
     /*@Override
@@ -48,36 +51,36 @@ public class Vertex implements Serializable {
 
         return b.toString();
     }*/
-    
-    public Vector getPosition() {
-        return position;
-    }
-
-    public void setPosition(Vector position) {
-        this.position = position;
-    }
-
-    public Vector getNormal() {
-        return normal;
-    }
-
-    public void setNormal(Vector normal) {
-        this.normal = normal;
-    }
-
-    public Vector2 getUv() {
-        return uv;
-    }
-
-    public void setUv(Vector2 uv) {
-        this.uv = uv;
-    }
 
     /**
      * @return the bone0
      */
     public Bone getBone0() {
         return bone0;
+    }
+
+    public Vector3f getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector3f position) {
+        this.position = position;
+    }
+
+    public Vector3f getNormal() {
+        return normal;
+    }
+
+    public void setNormal(Vector3f normal) {
+        this.normal = normal;
+    }
+
+    public Vector2f getUv() {
+        return uv;
+    }
+
+    public void setUv(Vector2f uv) {
+        this.uv = uv;
     }
 
     /**

@@ -15,17 +15,27 @@
  */
 package com.cbg.studio.client.engine.util.math;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a vector with three elements.
  * 
  * @author Sönke Sothmann
  * 
  */
-public class Vector3f implements Vectorf {
+public class Vector3f implements Vectorf,Serializable {
+    private static final long serialVersionUID = 1L;
     private float x;
     private float y;
     private float z;
 
+    public Vector3f(){
+        this.x = 0.0f;
+        this.y = 0.0f;
+        this.z = 0.0f;
+    }
     /**
      * Constructs a new instance of the Vector3f with the given coordinates to
      * set.
@@ -152,5 +162,18 @@ public class Vector3f implements Vectorf {
     @Override
     public float[] toArray() {
         return new float[] { this.x, this.y, this.z };
+    }
+    
+    @Override
+    public List<Float> toList(){
+        List<Float> list = new ArrayList<Float>();
+        
+        float[] coords = this.toArray();
+        
+        for(int x=0;x<coords.length;x++){
+            list.add(new Float(coords[x]));
+        }
+        
+        return list;
     }
 }
